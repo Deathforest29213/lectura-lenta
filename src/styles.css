@@ -102,6 +102,7 @@
 }
 
 .main-menu,
+.download-menu,
 .area-menu,
 .module-menu,
 .theme-menu,
@@ -167,6 +168,12 @@
   margin-top: 32px;
 }
 
+.menu-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
 .top-button,
 .all-themes-button,
 .small-action {
@@ -206,6 +213,12 @@
   background: var(--renal-surface-soft);
 }
 
+.small-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+}
+
 .dashboard-grid,
 .unit-grid {
   display: grid;
@@ -225,7 +238,24 @@
   padding: 20px;
 }
 
+.download-area-list {
+  display: grid;
+  width: min(100%, 1040px);
+  margin: 34px auto 0;
+  gap: 22px;
+}
+
+.download-area-card {
+  position: relative;
+  border: 1px solid rgba(var(--renal-border-rgb), 0.5);
+  border-radius: 22px;
+  background: rgba(var(--renal-surface-soft-rgb), 0.72);
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+}
+
 .download-band-header,
+.download-area-header,
 .download-actions,
 .card-meta,
 .reader-progress-row {
@@ -240,10 +270,31 @@
   font-size: 1.2rem;
 }
 
+.download-area-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.35rem;
+}
+
 .download-band p {
   margin: 8px 0 0;
   color: var(--renal-muted);
   line-height: 1.6;
+}
+
+.download-area-card p {
+  margin: 8px 0 0;
+  color: var(--renal-muted);
+  line-height: 1.6;
+}
+
+.download-area-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .download-actions {
@@ -257,6 +308,48 @@
   margin-top: 18px;
 }
 
+.download-table {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.download-table-row {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1.4fr) minmax(12rem, 1.35fr) minmax(5rem, 0.55fr) minmax(6rem, 0.7fr) minmax(8rem, 0.8fr);
+  gap: 12px;
+  align-items: center;
+  border-radius: 16px;
+  background: rgba(var(--renal-surface-rgb), 0.64);
+  padding: 12px;
+}
+
+.download-table-head {
+  background: rgba(var(--renal-surface-rgb), 0.36);
+  color: var(--renal-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.download-table-row span {
+  color: var(--renal-muted);
+  font-size: 0.86rem;
+}
+
+.download-module-cell strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--renal-text);
+  font-size: 0.98rem;
+}
+
+.download-table-row .small-action {
+  width: 100%;
+}
+
 .download-row {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -268,12 +361,68 @@
 }
 
 .download-row strong {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .download-row span {
   color: var(--renal-muted);
   font-size: 0.86rem;
+}
+
+.download-warning-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin-top: 8px;
+}
+
+.download-warning-detail .warning-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+}
+
+.download-warning-detail span {
+  color: var(--warning);
+}
+
+.download-outdated-list {
+  margin-top: 18px;
+  border-radius: 16px;
+  background: rgba(var(--renal-surface-rgb), 0.46);
+  padding: 14px 16px;
+}
+
+.download-outdated-list h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.download-outdated-list ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.download-outdated-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--warning);
+  font-size: 0.9rem;
+}
+
+.download-outdated-list .warning-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
 }
 
 .menu-card {
@@ -639,11 +788,17 @@
   }
 
   .download-row,
+  .download-table-row,
   .download-band-header {
     grid-template-columns: 1fr;
   }
 
+  .download-table-head {
+    display: none;
+  }
+
   .download-band-header,
+  .download-area-header,
   .reader-toolbar {
     align-items: stretch;
     flex-direction: column;
@@ -654,7 +809,8 @@
   }
 
   .download-actions .small-action,
-  .download-row .small-action {
+  .download-row .small-action,
+  .download-table-row .small-action {
     width: 100%;
   }
 

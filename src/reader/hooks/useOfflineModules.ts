@@ -19,6 +19,9 @@ const readRecords = (): OfflineModuleRecord[] => {
 
 export function useOfflineModules(modules: ParsedReadingModule[]) {
   const [records, setRecords] = useState<OfflineModuleRecord[]>(readRecords)
+  const [transientStatuses, setTransientStatuses] = useState<
+    Partial<Record<string, Extract<ModuleDownloadStatus, 'downloading' | 'error'>>>
+  >({})
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(records))
@@ -46,31 +49,49 @@ export function useOfflineModules(modules: ParsedReadingModule[]) {
   const getRecord = (moduleId: string) => records.find((record) => record.moduleId === moduleId) ?? null
 
   const getStatus = (moduleId: string): ModuleDownloadStatus => {
+    const transientStatus = transientStatuses[moduleId]
+    if (transientStatus) return transientStatus
     const record = getRecord(moduleId)
     if (!record) return 'not-downloaded'
     return versionAlerts.some((alert) => alert.moduleId === moduleId) ? 'outdated' : 'downloaded'
   }
 
   const downloadModule = async (module: ParsedReadingModule) => {
-    if ('caches' in window) {
-      const cache = await window.caches.open('lectura-lenta-modules')
-      await Promise.all(module.assets.map((asset) => cache.add(asset).catch(() => undefined)))
-    }
+    setTransientStatuses((current) => ({ ...current, [module.id]: 'downloading' }))
 
-    setRecords((current) => [
-      ...current.filter((record) => record.moduleId !== module.id),
-      {
-        moduleId: module.id,
-        moduleVersion: module.version,
-        downloadedAt: new Date().toISOString(),
-        topicVersions: module.topicVersions,
-        assetUrls: module.assets,
-      },
-    ])
+    try {
+      if ('caches' in window) {
+        const cache = await window.caches.open('lectura-lenta-modules')
+        await Promise.all(module.assets.map((asset) => cache.add(asset).catch(() => undefined)))
+      }
+
+      setRecords((current) => [
+        ...current.filter((record) => record.moduleId !== module.id),
+        {
+          moduleId: module.id,
+          moduleVersion: module.version,
+          downloadedAt: new Date().toISOString(),
+          topicVersions: module.topicVersions,
+          assetUrls: module.assets,
+        },
+      ])
+      setTransientStatuses((current) => {
+        const rest = { ...current }
+        delete rest[module.id]
+        return rest
+      })
+    } catch {
+      setTransientStatuses((current) => ({ ...current, [module.id]: 'error' }))
+    }
   }
 
   const removeModule = (moduleId: string) => {
     setRecords((current) => current.filter((record) => record.moduleId !== moduleId))
+    setTransientStatuses((current) => {
+      const rest = { ...current }
+      delete rest[moduleId]
+      return rest
+    })
   }
 
   const downloadAll = async () => {
@@ -79,7 +100,10 @@ export function useOfflineModules(modules: ParsedReadingModule[]) {
     }
   }
 
-  const removeAll = () => setRecords([])
+  const removeAll = () => {
+    setRecords([])
+    setTransientStatuses({})
+  }
 
   return {
     records,

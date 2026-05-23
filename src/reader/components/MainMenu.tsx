@@ -2,9 +2,9 @@ import { areaHasAlert, moduleBlockCount, moduleThemeCount } from '../lib/moduleS
 import type { Area, ParsedReadingModule } from '../types/modules'
 import type { useOfflineModules } from '../hooks/useOfflineModules'
 import type { useReadingProgress } from '../hooks/useReadingProgress'
-import { DownloadManagerPanel } from './DownloadManagerPanel'
 import { MenuCard } from './MenuCard'
 import { TitleBar } from './TitleBar'
+import { TopButton } from './TopButton'
 
 type OfflineApi = ReturnType<typeof useOfflineModules>
 type ProgressApi = ReturnType<typeof useReadingProgress>
@@ -15,6 +15,7 @@ type MainMenuProps = {
   offline: OfflineApi
   progress: ProgressApi
   hasGlobalAlert: boolean
+  onOpenDownloads: () => void
   onOpenArea: (area: Area) => void
 }
 
@@ -43,17 +44,19 @@ export function MainMenu({
   offline,
   progress,
   hasGlobalAlert,
+  onOpenDownloads,
   onOpenArea,
 }: MainMenuProps) {
   return (
     <div className="main-menu">
       <TitleBar warning={hasGlobalAlert}>Lectura Lenta</TitleBar>
       <p className="intro">
-        Biblioteca modular de estudio. Descarga los modulos desde Inicio y abre cada lectura por
-        area, unidad y tema.
+        Biblioteca modular de estudio. Abre cada lectura por area, unidad y tema.
       </p>
 
-      <DownloadManagerPanel modules={modules} offline={offline} />
+      <div className="menu-action-row">
+        <TopButton onClick={onOpenDownloads}>Descargas</TopButton>
+      </div>
 
       <div className="dashboard-grid" aria-label="Areas disponibles">
         {areas.map((area) => {

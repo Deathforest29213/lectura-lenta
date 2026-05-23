@@ -37,4 +37,9 @@ export type VersionAlert = {
   themeId: string
 }
 
-export type ModuleDownloadStatus = 'not-downloaded' | 'downloaded' | 'outdated'
+export type ModuleDownloadStatus =
+  | 'not-downloaded'
+  | 'downloading'
+  | 'downloaded'
+  | 'outdated'
+  | 'error'

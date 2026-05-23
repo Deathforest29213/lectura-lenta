@@ -251,7 +251,8 @@ export function useReadingSession({ onProgress }: ReadingSessionOptions) {
   useEffect(() => {
     if (!currentBlock || typing || completed) return
     if (currentSentenceIndex === 0 && revealedSentences.length === 0) {
-      advance()
+      const timeout = window.setTimeout(() => advance(), 0)
+      return () => window.clearTimeout(timeout)
     }
   }, [
     advance,

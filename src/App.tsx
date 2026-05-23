@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import { areas } from './data/areas'
 import { modules } from './data/modules'
 import { AreaMenu } from './reader/components/AreaMenu'
+import { DownloadManagerPanel } from './reader/components/DownloadManagerPanel'
 import { MainMenu } from './reader/components/MainMenu'
 import { ModuleMenu } from './reader/components/ModuleMenu'
 import { ReaderScreen } from './reader/components/ReaderScreen'
@@ -16,6 +17,7 @@ import type { Theme, Unit } from './reader/types/reading'
 
 type View =
   | { name: 'home' }
+  | { name: 'downloads' }
   | { name: 'area'; area: Area }
   | { name: 'module'; module: ParsedReadingModule }
   | { name: 'unit'; module: ParsedReadingModule; unit: Unit }
@@ -50,6 +52,11 @@ function App() {
   const openArea = (area: Area) => {
     session.resetReader()
     setView({ name: 'area', area })
+  }
+
+  const openDownloads = () => {
+    session.resetReader()
+    setView({ name: 'downloads' })
   }
 
   const openModule = (module: ParsedReadingModule) => {
@@ -87,7 +94,17 @@ function App() {
             offline={offline}
             progress={progress}
             hasGlobalAlert={hasGlobalAlert}
+            onOpenDownloads={openDownloads}
             onOpenArea={openArea}
+          />
+        )}
+
+        {view.name === 'downloads' && (
+          <DownloadManagerPanel
+            areas={areas}
+            modules={modules}
+            offline={offline}
+            onBack={openHome}
           />
         )}
 
