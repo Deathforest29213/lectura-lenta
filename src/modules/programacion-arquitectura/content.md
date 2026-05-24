@@ -14,7 +14,7 @@ source_files:
   - arquitectura-react.md
 ---
 
-# unit: Unidad 1 - Fundamentos de arquitectura
+# unit: Unidad 1 - Fundamentos y organizacion del codigo
 
 ## theme: Tema 1 - Que es arquitectura
 
@@ -59,8 +59,6 @@ Una estructura muy elaborada puede ser flexible, pero agregar complejidad antes 
 
 #### block: 4
 La arquitectura no se evalua por sonar sofisticada, sino por ayudar al proyecto concreto.
-
-# unit: Unidad 2 - Separacion y organizacion del codigo
 
 ## theme: Tema 2 - Separacion de responsabilidades
 
@@ -217,7 +215,7 @@ Esta estructura agrupa archivos por problema de negocio: pedidos.
 #### block: 3
 Otra opcion seria organizar por tipo tecnico, pero puede dispersar codigo relacionado.
 
-# unit: Unidad 3 - Arquitectura por capas y principios de diseno
+# unit: Unidad 2 - Capas, principios y frontend
 
 ## theme: Tema 5 - Capas
 
@@ -321,8 +319,6 @@ SOLID no debe aplicarse como una lista mecanica.
 
 #### block: 2
 Su valor aparece cuando ayuda a detectar rigidez, duplicacion o mezcla de responsabilidades.
-
-# unit: Unidad 4 - Arquitectura frontend y React
 
 ## theme: Tema 7 - Arquitectura en frontend y React
 

@@ -132,12 +132,6 @@ export function ReaderScreen({
             </div>
 
             <div className={readerTextClass}>
-              {completed && (
-                <p className="reader-block">
-                  Terminaste esta lectura. Puedes volver a temas o retroceder para repasar.
-                </p>
-              )}
-
               {revealedSentences.map((sentence, index) => (
                 <p
                   className={`reader-block ${isDelimiterBlock(sentence) ? 'is-delimiter' : ''}`}

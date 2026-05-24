@@ -85,7 +85,7 @@ Los patrones de comportamiento se enfocan en como se distribuyen acciones, algor
 #### block: 2
 Son utiles cuando una decision o colaboracion empieza a crecer dentro del codigo.
 
-# unit: Unidad 2 - Patrones creacionales
+# unit: Unidad 2 - Patrones clasicos
 
 ## theme: Tema 3 - Patrones creacionales
 
@@ -149,8 +149,6 @@ Singleton busca asegurar una unica instancia compartida.
 #### block: 3
 Singleton debe usarse con cuidado, porque puede introducir estado global y acoplamiento oculto.
 
-# unit: Unidad 3 - Patrones estructurales
-
 ## theme: Tema 4 - Patrones estructurales
 
 ### section: Definicion
@@ -212,8 +210,6 @@ Decorator agrega comportamiento sin modificar directamente el objeto original.
 
 #### block: 2
 Composite permite tratar objetos individuales y grupos de objetos de forma parecida.
-
-# unit: Unidad 4 - Patrones de comportamiento
 
 ## theme: Tema 5 - Patrones de comportamiento
 
@@ -282,7 +278,7 @@ La decision se delega al objeto `estrategias`.
 #### block: 4
 Esto puede mejorar la lectura si las variantes crecen.
 
-# unit: Unidad 5 - MVC y patrones en interfaces
+# unit: Unidad 3 - Patrones en interfaces
 
 ## theme: Tema 6 - MVC
 
