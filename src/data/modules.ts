@@ -2,7 +2,9 @@ import { moduleDefinition as acidoBase } from '../modules/bioquimica-acido-base/
 import { moduleDefinition as funcionRenal } from '../modules/bioquimica-funcion-renal/module'
 import { moduleDefinition as hidrosalino } from '../modules/bioquimica-hidrosalino/module'
 import { moduleDefinition as rompeBarreraNo } from '../modules/libros-rompe-barrera-no/module'
+import { moduleDefinition as arquitectura } from '../modules/programacion-arquitectura/module'
 import { moduleDefinition as fundamentos } from '../modules/programacion-fundamentos/module'
+import { moduleDefinition as patronesDiseno } from '../modules/programacion-patrones-diseno/module'
 import { parseMarkdownLibrary } from '../reader/lib/markdownParser'
 import type { ParsedReadingModule, RawReadingModule } from '../reader/types/modules'
 
@@ -11,6 +13,8 @@ const rawModules: RawReadingModule[] = [
   hidrosalino,
   acidoBase,
   fundamentos,
+  arquitectura,
+  patronesDiseno,
   rompeBarreraNo,
 ]
 

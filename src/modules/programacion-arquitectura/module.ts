@@ -2,10 +2,10 @@ import markdown from './content.md?raw'
 import type { RawReadingModule } from '../../reader/types/modules'
 
 export const moduleDefinition: RawReadingModule = {
-  id: 'libros-rompe-barrera-no',
-  areaId: 'libros',
-  title: 'Chris Voss',
-  description: 'Libros, capitulos, conceptos y frases para repasar negociacion aplicada.',
+  id: 'programacion-arquitectura',
+  areaId: 'programacion',
+  title: 'Arquitectura',
+  description: 'Organizacion, responsabilidades, capas y criterios de diseno de software.',
   version: '1.0.0',
   markdown,
   assets: [],
