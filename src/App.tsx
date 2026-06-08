@@ -7,9 +7,11 @@ import { DownloadManagerPanel } from './reader/components/DownloadManagerPanel'
 import { MainMenu } from './reader/components/MainMenu'
 import { ModuleMenu } from './reader/components/ModuleMenu'
 import { ReaderScreen } from './reader/components/ReaderScreen'
+import { RelevantQuestionsScreen } from './reader/components/RelevantQuestionsScreen'
 import { Shell } from './reader/components/Shell'
 import { ThemeMenu } from './reader/components/ThemeMenu'
 import { useOfflineModules } from './reader/hooks/useOfflineModules'
+import { useQuestionProgress } from './reader/hooks/useQuestionProgress'
 import { useReadingProgress } from './reader/hooks/useReadingProgress'
 import { useReadingSession } from './reader/hooks/useReadingSession'
 import type { Area, ParsedReadingModule } from './reader/types/modules'
@@ -21,6 +23,7 @@ type View =
   | { name: 'area'; area: Area }
   | { name: 'module'; module: ParsedReadingModule }
   | { name: 'unit'; module: ParsedReadingModule; unit: Unit }
+  | { name: 'questions'; module: ParsedReadingModule; unit: Unit | null }
   | { name: 'reader'; module: ParsedReadingModule; unit: Unit; theme: Theme | null }
 
 const routeModuleId = () => {
@@ -35,6 +38,7 @@ function App() {
   )
   const offline = useOfflineModules(modules)
   const progress = useReadingProgress()
+  const questionProgress = useQuestionProgress()
 
   const session = useReadingSession({
     onProgress: progress.saveProgress,
@@ -79,6 +83,11 @@ function App() {
   const openWholeUnit = (module: ParsedReadingModule, unit: Unit) => {
     session.startUnit(module, unit)
     setView({ name: 'reader', module, unit, theme: null })
+  }
+
+  const openRelevantQuestions = (module: ParsedReadingModule, unit: Unit | null = null) => {
+    session.resetReader()
+    setView({ name: 'questions', module, unit })
   }
 
   return (
@@ -138,6 +147,18 @@ function App() {
             onBack={() => openModule(view.module)}
             onSelectTheme={(theme) => openTheme(view.module, view.unit, theme)}
             onSelectAll={() => openWholeUnit(view.module, view.unit)}
+            onOpenRelevantQuestions={() => openRelevantQuestions(view.module, view.unit)}
+          />
+        )}
+
+        {view.name === 'questions' && (
+          <RelevantQuestionsScreen
+            module={view.module}
+            onBack={() =>
+              view.unit
+                ? setView({ name: 'unit', module: view.module, unit: view.unit })
+                : openModule(view.module)
+            }
           />
         )}
 
@@ -161,6 +182,7 @@ function App() {
             onJumpToSection={session.jumpToSection}
             compactText={session.compactText}
             onToggleTextSize={session.toggleTextSize}
+            getBlockStatus={questionProgress.getBlockStatus}
           />
         )}
       </Shell>

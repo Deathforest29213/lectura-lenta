@@ -6,6 +6,7 @@ import { moduleDefinition as arquitectura } from '../modules/programacion-arquit
 import { moduleDefinition as fundamentos } from '../modules/programacion-fundamentos/module'
 import { moduleDefinition as patronesDiseno } from '../modules/programacion-patrones-diseno/module'
 import { parseMarkdownLibrary } from '../reader/lib/markdownParser'
+import { parseRelevantQuestionMap } from '../reader/lib/questionMapParser'
 import type { ParsedReadingModule, RawReadingModule } from '../reader/types/modules'
 
 const rawModules: RawReadingModule[] = [
@@ -19,7 +20,7 @@ const rawModules: RawReadingModule[] = [
 ]
 
 const buildModule = (module: RawReadingModule): ParsedReadingModule => {
-  const initialLibrary = parseMarkdownLibrary(module.markdown, {}, module.version)
+  const initialLibrary = parseMarkdownLibrary(module.markdown, {}, module.version, module.id)
   const generatedTopicVersions = Object.fromEntries(
     initialLibrary.flatMap((unit) =>
       unit.themes.map((theme) => [theme.id, module.version] as const),
@@ -32,8 +33,9 @@ const buildModule = (module: RawReadingModule): ParsedReadingModule => {
 
   return {
     ...module,
+    relevantQuestions: parseRelevantQuestionMap(module.relevantQuestionsMarkdown),
     topicVersions,
-    library: parseMarkdownLibrary(module.markdown, topicVersions, module.version),
+    library: parseMarkdownLibrary(module.markdown, topicVersions, module.version, module.id),
   }
 }
 

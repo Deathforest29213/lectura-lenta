@@ -18,6 +18,7 @@ type ThemeMenuProps = {
   onBack: () => void
   onSelectTheme: (theme: Theme) => void
   onSelectAll: () => void
+  onOpenRelevantQuestions: () => void
 }
 
 export function ThemeMenu({
@@ -28,7 +29,10 @@ export function ThemeMenu({
   onBack,
   onSelectTheme,
   onSelectAll,
+  onOpenRelevantQuestions,
 }: ThemeMenuProps) {
+  const hasRelevantQuestions = module.relevantQuestions.units.length > 0
+
   return (
     <div className="theme-menu">
       <div className="top-row">
@@ -56,6 +60,14 @@ export function ThemeMenu({
       </div>
 
       <div className="all-themes-row">
+        <button
+          className="all-themes-button panel-outline"
+          disabled={!hasRelevantQuestions}
+          onClick={onOpenRelevantQuestions}
+          type="button"
+        >
+          Preguntas relevantes
+        </button>
         <button className="all-themes-button panel-outline" onClick={onSelectAll} type="button">
           Leer unidad completa
         </button>

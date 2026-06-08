@@ -1,5 +1,6 @@
 export type Block = {
   id: string
+  refId: string
   order: number
   lines: string[]
 }
@@ -29,6 +30,7 @@ export type Unit = {
 
 export type ReaderBlock = {
   id: string
+  sourceBlockRefId: string | null
   sectionTitle: string
   blockLabel: string
   orderLabel: string

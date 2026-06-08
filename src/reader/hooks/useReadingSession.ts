@@ -43,12 +43,17 @@ export function useReadingSession({ onProgress }: ReadingSessionOptions) {
       sectionStartIndex -= 1
     }
 
-    return flow.slice(sectionStartIndex, currentBlockIndex).flatMap((block) => block.sentences)
+    return flow
+      .slice(sectionStartIndex, currentBlockIndex)
+      .flatMap((block) => block.sentences.map((sentence) => ({ block, sentence })))
   }, [currentBlock, currentBlockIndex, flow])
 
   const visibleSentences = useMemo(
-    () => [...sectionContextSentences, ...revealedSentences],
-    [revealedSentences, sectionContextSentences],
+    () => [
+      ...sectionContextSentences,
+      ...revealedSentences.map((sentence) => ({ block: currentBlock, sentence })),
+    ],
+    [currentBlock, revealedSentences, sectionContextSentences],
   )
 
   const persist = useCallback(

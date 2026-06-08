@@ -4,6 +4,7 @@ import type { ParsedReadingModule } from '../types/modules'
 import type { ReaderBlock, Unit } from '../types/reading'
 import { SectionDropdown } from './SectionDropdown'
 import { TopButton } from './TopButton'
+import type { BlockReviewStatus } from '../types/questions'
 
 type ReaderScreenProps = {
   module: ParsedReadingModule
@@ -12,7 +13,7 @@ type ReaderScreenProps = {
   currentBlock: ReaderBlock | null
   currentIndex: number
   totalBlocks: number
-  revealedSentences: string[]
+  revealedSentences: { block: ReaderBlock | null; sentence: string }[]
   typingSentence: string
   completed: boolean
   onAdvance: () => void
@@ -22,6 +23,7 @@ type ReaderScreenProps = {
   onJumpToSection: (sectionName: string) => void
   compactText: boolean
   onToggleTextSize: () => void
+  getBlockStatus: (blockRef: string | null | undefined) => BlockReviewStatus
 }
 
 type PointerStart = {
@@ -48,6 +50,7 @@ export function ReaderScreen({
   onJumpToSection,
   compactText,
   onToggleTextSize,
+  getBlockStatus,
 }: ReaderScreenProps) {
   const touchStart = useRef<PointerStart | null>(null)
   const panelScrollRef = useRef<HTMLDivElement | null>(null)
@@ -132,17 +135,28 @@ export function ReaderScreen({
             </div>
 
             <div className={readerTextClass}>
-              {revealedSentences.map((sentence, index) => (
+              {revealedSentences.map(({ block, sentence }, index) => {
+                const reviewStatus = getBlockStatus(block?.sourceBlockRefId)
+                return (
                 <p
-                  className={`reader-block ${isDelimiterBlock(sentence) ? 'is-delimiter' : ''}`}
+                  className={`reader-block ${isDelimiterBlock(sentence) ? 'is-delimiter' : ''} ${
+                    reviewStatus !== 'normal' ? `is-${reviewStatus}` : ''
+                  }`}
                   key={`${index}-${sentence.slice(0, 20)}`}
                 >
                   {renderInlineMarkdown(sentence)}
                 </p>
-              ))}
+                )
+              })}
 
               {typingSentence && (
-                <p className={`reader-block ${isDelimiterBlock(typingSentence) ? 'is-delimiter' : ''}`}>
+                <p
+                  className={`reader-block ${isDelimiterBlock(typingSentence) ? 'is-delimiter' : ''} ${
+                    getBlockStatus(currentBlock?.sourceBlockRefId) !== 'normal'
+                      ? `is-${getBlockStatus(currentBlock?.sourceBlockRefId)}`
+                      : ''
+                  }`}
+                >
                   {stripInlineMarkdown(typingSentence)}
                   <span className="typing-cursor" />
                 </p>

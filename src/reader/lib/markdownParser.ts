@@ -65,6 +65,15 @@ export const parseFrontmatter = (markdown: string) => {
 
 const unitIdFromTitle = (title: string, index: number) => slugify(title) || `unit-${index + 1}`
 
+const blockRefId = (
+  moduleId: string | null,
+  unitId: string | null,
+  themeId: string | null,
+  sectionId: string,
+  order: number,
+) =>
+  [moduleId ?? 'module', unitId ?? 'unit', themeId ?? 'theme', sectionId, `b${order}`].join('.')
+
 const uniqueId = (base: string, existing: Set<string>, fallback: string) => {
   const normalized = base || fallback
   if (!existing.has(normalized)) {
@@ -85,6 +94,7 @@ export const parseMarkdownLibrary = (
   markdown: string,
   topicVersions: Record<string, string> = {},
   defaultVersion = '1.0.0',
+  moduleId: string | null = null,
 ): Unit[] => {
   const { body } = parseFrontmatter(markdown)
   const library: Unit[] = []
@@ -179,9 +189,11 @@ export const parseMarkdownLibrary = (
       if (/^#### block:/i.test(trimmed)) {
         commitBlock()
         const sectionId = currentSection?.id ?? 'orphan-section'
+        const order = (currentSection?.blocks.length ?? 0) + 1
         currentBlock = {
           id: `${sectionId}-${currentSection?.blocks.length ?? 0}`,
-          order: (currentSection?.blocks.length ?? 0) + 1,
+          refId: blockRefId(moduleId, currentUnit?.id ?? null, currentTheme?.id ?? null, sectionId, order),
+          order,
           lines: [],
         }
         return
@@ -208,6 +220,7 @@ export const flattenSections = (
   sections.flatMap((section, sectionIndex) => {
     const contentBlocks = section.blocks.map((block, blockIndex) => ({
       id: `${themeId ?? 'all'}-${block.id}-${blockIndex}`,
+      sourceBlockRefId: block.refId,
       sectionTitle: section.title,
       blockLabel: `Bloque ${blockIndex + 1}`,
       orderLabel: `${sectionIndex + 1}.${blockIndex + 1}`,
@@ -221,6 +234,7 @@ export const flattenSections = (
       ...contentBlocks,
       {
         id: `${themeId ?? 'all'}-${section.id}-delimiter`,
+        sourceBlockRefId: null,
         sectionTitle: section.title,
         blockLabel: 'Delimitador',
         orderLabel: `${sectionIndex + 1}.x`,

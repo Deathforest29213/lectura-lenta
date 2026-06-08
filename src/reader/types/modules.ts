@@ -1,4 +1,5 @@
 import type { Unit } from './reading'
+import type { RelevantQuestionMap } from './questions'
 
 export type Area = {
   id: string
@@ -15,11 +16,13 @@ export type RawReadingModule = {
   markdown: string
   assets: string[]
   theme: string
+  relevantQuestionsMarkdown?: string
   topicVersionOverrides?: Record<string, string>
 }
 
 export type ParsedReadingModule = RawReadingModule & {
   library: Unit[]
+  relevantQuestions: RelevantQuestionMap
   topicVersions: Record<string, string>
 }
 
