@@ -42,7 +42,7 @@ export function ModuleMenu({ module, offline, progress, onBack, onOpenUnit }: Mo
           ? 'disponible sin conexion'
           : status === 'outdated'
             ? 'actualizacion pendiente'
-            : 'no descargado'}
+            : 'no descargada'}
         .
       </p>
 

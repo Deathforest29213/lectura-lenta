@@ -19,7 +19,7 @@ const statusText = (status: ModuleDownloadStatus) => {
   if (status === 'downloading') return 'Descargando'
   if (status === 'outdated') return 'Actualizacion pendiente'
   if (status === 'error') return 'Error de descarga'
-  return 'No descargado'
+  return 'No descargada'
 }
 
 const actionText = (status: ModuleDownloadStatus) => {
@@ -110,7 +110,7 @@ export function DownloadManagerPanel({
                   <div className="download-area-meta">
                     <span className="status-pill">{areaStatusText(statuses)}</span>
                     <span className="status-pill">
-                      {downloadedCount} de {areaModules.length} modulos offline
+                      {downloadedCount} de {areaModules.length} unidades offline
                     </span>
                   </div>
                 </div>
@@ -135,9 +135,9 @@ export function DownloadManagerPanel({
                 </div>
               </div>
 
-              <div className="download-table" role="table" aria-label={`Modulos de ${area.title}`}>
+              <div className="download-table" role="table" aria-label={`Unidades de ${area.title}`}>
                 <div className="download-table-row download-table-head" role="row">
-                  <span role="columnheader">Modulo</span>
+                  <span role="columnheader">Unidad</span>
                   <span role="columnheader">Estado</span>
                   <span role="columnheader">Actual</span>
                   <span role="columnheader">Descargada</span>

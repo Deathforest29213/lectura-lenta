@@ -19,6 +19,7 @@ type ThemeMenuProps = {
   onSelectTheme: (theme: Theme) => void
   onSelectAll: () => void
   onOpenRelevantQuestions: () => void
+  onOpenGallery: () => void
 }
 
 export function ThemeMenu({
@@ -30,13 +31,15 @@ export function ThemeMenu({
   onSelectTheme,
   onSelectAll,
   onOpenRelevantQuestions,
+  onOpenGallery,
 }: ThemeMenuProps) {
+  const hasGallery = Boolean(module.visualSummaries?.[unit.title]?.length)
   const hasRelevantQuestions = module.relevantQuestions.units.length > 0
 
   return (
     <div className="theme-menu">
       <div className="top-row">
-        <TopButton onClick={onBack}>Modulo</TopButton>
+        <TopButton onClick={onBack}>Unidad</TopButton>
       </div>
       <TitleBar warning={unit.themes.some((theme) => themeHasAlert(module.id, theme.id, offline.versionAlerts))}>
         {unit.title}
@@ -70,6 +73,14 @@ export function ThemeMenu({
         </button>
         <button className="all-themes-button panel-outline" onClick={onSelectAll} type="button">
           Leer unidad completa
+        </button>
+        <button
+          className="all-themes-button panel-outline"
+          disabled={!hasGallery}
+          onClick={onOpenGallery}
+          type="button"
+        >
+          Galeria
         </button>
       </div>
     </div>

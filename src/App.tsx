@@ -10,6 +10,7 @@ import { ReaderScreen } from './reader/components/ReaderScreen'
 import { RelevantQuestionsScreen } from './reader/components/RelevantQuestionsScreen'
 import { Shell } from './reader/components/Shell'
 import { ThemeMenu } from './reader/components/ThemeMenu'
+import { GalleryScreen } from './reader/components/GalleryScreen'
 import { useOfflineModules } from './reader/hooks/useOfflineModules'
 import { useQuestionProgress } from './reader/hooks/useQuestionProgress'
 import { useReadingProgress } from './reader/hooks/useReadingProgress'
@@ -24,6 +25,7 @@ type View =
   | { name: 'module'; module: ParsedReadingModule }
   | { name: 'unit'; module: ParsedReadingModule; unit: Unit }
   | { name: 'questions'; module: ParsedReadingModule; unit: Unit | null }
+  | { name: 'gallery'; module: ParsedReadingModule; unit: Unit; images: string[] }
   | { name: 'reader'; module: ParsedReadingModule; unit: Unit; theme: Theme | null }
 
 const routeModuleId = () => {
@@ -83,6 +85,13 @@ function App() {
   const openWholeUnit = (module: ParsedReadingModule, unit: Unit) => {
     session.startUnit(module, unit)
     setView({ name: 'reader', module, unit, theme: null })
+  }
+
+  const openGallery = (module: ParsedReadingModule, unit: Unit) => {
+    const images = module.visualSummaries?.[unit.title] ?? []
+    if (!images.length) return
+    session.resetReader()
+    setView({ name: 'gallery', module, unit, images })
   }
 
   const openRelevantQuestions = (module: ParsedReadingModule, unit: Unit | null = null) => {
@@ -148,6 +157,7 @@ function App() {
             onSelectTheme={(theme) => openTheme(view.module, view.unit, theme)}
             onSelectAll={() => openWholeUnit(view.module, view.unit)}
             onOpenRelevantQuestions={() => openRelevantQuestions(view.module, view.unit)}
+            onOpenGallery={() => openGallery(view.module, view.unit)}
           />
         )}
 
@@ -159,6 +169,15 @@ function App() {
                 ? setView({ name: 'unit', module: view.module, unit: view.unit })
                 : openModule(view.module)
             }
+          />
+        )}
+
+        {view.name === 'gallery' && (
+          <GalleryScreen
+            module={view.module}
+            unit={view.unit}
+            images={view.images}
+            onBack={() => setView({ name: 'unit', module: view.module, unit: view.unit })}
           />
         )}
 

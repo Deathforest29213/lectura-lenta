@@ -8,6 +8,7 @@ import { moduleDefinition as patronesDiseno } from '../modules/programacion-patr
 import { parseMarkdownLibrary } from '../reader/lib/markdownParser'
 import { parseRelevantQuestionMap } from '../reader/lib/questionMapParser'
 import type { ParsedReadingModule, RawReadingModule } from '../reader/types/modules'
+import { visualSummaries } from './visualSummaries'
 
 const rawModules: RawReadingModule[] = [
   funcionRenal,
@@ -20,6 +21,11 @@ const rawModules: RawReadingModule[] = [
 ]
 
 const buildModule = (module: RawReadingModule): ParsedReadingModule => {
+  const moduleVisualSummaries = {
+    ...visualSummaries[module.id],
+    ...module.visualSummaries,
+  }
+  const visualSummaryAssets = Object.values(moduleVisualSummaries).flat()
   const initialLibrary = parseMarkdownLibrary(module.markdown, {}, module.version, module.id)
   const generatedTopicVersions = Object.fromEntries(
     initialLibrary.flatMap((unit) =>
@@ -33,6 +39,8 @@ const buildModule = (module: RawReadingModule): ParsedReadingModule => {
 
   return {
     ...module,
+    assets: [...module.assets, ...visualSummaryAssets],
+    visualSummaries: moduleVisualSummaries,
     relevantQuestions: parseRelevantQuestionMap(module.relevantQuestionsMarkdown),
     topicVersions,
     library: parseMarkdownLibrary(module.markdown, topicVersions, module.version, module.id),

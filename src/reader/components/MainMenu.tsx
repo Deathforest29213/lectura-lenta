@@ -72,9 +72,9 @@ export function MainMenu({
               key={area.id}
               title={area.title}
               description={area.description}
-              meta={`${areaModules.length} modulos · ${topics} temas · ${blocks} bloques`}
+              meta={`${areaModules.length} unidades · ${topics} temas · ${blocks} bloques`}
               progress={areaProgress(area, modules, progress)}
-              status={`${downloaded} descargados`}
+              status={`${downloaded} descargadas`}
               ready={downloaded > 0}
               warning={areaHasAlert(area, modules, offline.versionAlerts)}
               onClick={() => onOpenArea(area)}

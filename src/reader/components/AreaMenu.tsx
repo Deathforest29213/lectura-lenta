@@ -45,7 +45,7 @@ export function AreaMenu({ area, modules, offline, progress, onBack, onOpenModul
       </TitleBar>
       <p className="intro">{area.description}</p>
 
-      <div className="unit-grid" aria-label="Modulos disponibles">
+      <div className="unit-grid" aria-label="Unidades disponibles">
         {modules.map((module) => {
           const status = offline.getStatus(module.id)
           return (

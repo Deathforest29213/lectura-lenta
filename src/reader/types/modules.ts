@@ -16,6 +16,7 @@ export type RawReadingModule = {
   markdown: string
   assets: string[]
   theme: string
+  visualSummaries?: Record<string, string[]>
   relevantQuestionsMarkdown?: string
   topicVersionOverrides?: Record<string, string>
 }

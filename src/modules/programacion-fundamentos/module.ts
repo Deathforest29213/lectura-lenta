@@ -1,4 +1,5 @@
 import markdown from './content.md?raw'
+import relevantQuestionsMarkdown from './question-map.md?raw'
 import type { RawReadingModule } from '../../reader/types/modules'
 
 export const moduleDefinition: RawReadingModule = {
@@ -8,6 +9,7 @@ export const moduleDefinition: RawReadingModule = {
   description: 'Conceptos base de programacion organizados para lectura pausada.',
   version: '1.0.0',
   markdown,
+  relevantQuestionsMarkdown,
   assets: [],
   theme: 'renal',
 }

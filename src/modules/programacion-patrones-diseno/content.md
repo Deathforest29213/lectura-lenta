@@ -14,7 +14,7 @@ source_files:
   - raw/markdowns/arquitectura-y-patrones/refactoring-guru-design-patterns.md
 ---
 
-# unit: Unidad 2 - Patrones de diseno
+# unit: Unidad 1 - Patrones de diseno
 
 ## theme: Tema 1 - Que es un patron de diseno
 
@@ -142,7 +142,7 @@ Si solo hay una implementacion y no se espera variacion, una interfaz puede ser 
 #### block: 6
 La abstraccion debe pagar su costo.
 
-# unit: Unidad 3 - Patrones creacionales
+# unit: Unidad 2 - Patrones creacionales
 
 ## theme: Tema 1 - Idea general
 
@@ -327,7 +327,7 @@ caso de uso recibe servicios necesarios
 #### block: 6
 Asi las dependencias quedan visibles.
 
-# unit: Unidad 4 - Patrones estructurales
+# unit: Unidad 3 - Patrones estructurales
 
 ## theme: Tema 1 - Idea general
 
@@ -511,7 +511,7 @@ No suele ser el primer patron que se necesita en aplicaciones backend comunes.
 #### block: 4
 Si el problema de memoria no existe, Flyweight probablemente no aporta.
 
-# unit: Unidad 5 - Patrones de comportamiento
+# unit: Unidad 4 - Patrones de comportamiento
 
 ## theme: Tema 1 - Idea general
 

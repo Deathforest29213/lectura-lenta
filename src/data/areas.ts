@@ -4,7 +4,7 @@ export const areas: Area[] = [
   {
     id: 'bioquimica',
     title: 'Bioquimica',
-    description: 'Modulos de fisiologia, equilibrio y analisis clinico.',
+    description: 'Unidades de fisiologia, equilibrio y analisis clinico.',
   },
   {
     id: 'programacion',
