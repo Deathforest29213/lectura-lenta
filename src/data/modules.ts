@@ -4,6 +4,7 @@ import { moduleDefinition as hidrosalino } from '../modules/bioquimica-hidrosali
 import { moduleDefinition as rompeBarreraNo } from '../modules/libros-rompe-barrera-no/module'
 import { moduleDefinition as arquitectura } from '../modules/programacion-arquitectura/module'
 import { moduleDefinition as fundamentos } from '../modules/programacion-fundamentos/module'
+import { moduleDefinition as optimizacion } from '../modules/programacion-optimizacion/module'
 import { moduleDefinition as patronesDiseno } from '../modules/programacion-patrones-diseno/module'
 import { parseMarkdownLibrary } from '../reader/lib/markdownParser'
 import { parseRelevantQuestionMap } from '../reader/lib/questionMapParser'
@@ -16,6 +17,7 @@ const rawModules: RawReadingModule[] = [
   acidoBase,
   fundamentos,
   arquitectura,
+  optimizacion,
   patronesDiseno,
   rompeBarreraNo,
 ]
