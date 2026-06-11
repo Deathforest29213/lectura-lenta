@@ -21,10 +21,30 @@ export type RawReadingModule = {
   topicVersionOverrides?: Record<string, string>
 }
 
+export type IllustrationLink = {
+  unitId: string
+  themeId: string
+  sectionId: string
+  unitTitle: string
+  themeTitle: string
+  sectionTitle: string
+  images: string[]
+  sourceParagraphs: string[]
+}
+
+export type SectionIllustrations = {
+  unitTitle: string
+  themeTitle: string
+  sectionTitle: string
+  images: string[]
+  sourceParagraphs: string[]
+}
+
 export type ParsedReadingModule = RawReadingModule & {
   library: Unit[]
   relevantQuestions: RelevantQuestionMap
   topicVersions: Record<string, string>
+  illustrationsBySection: Record<string, SectionIllustrations>
 }
 
 export type OfflineModuleRecord = {

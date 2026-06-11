@@ -1,6 +1,6 @@
-import { useRef, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { isDelimiterBlock, renderInlineMarkdown, stripInlineMarkdown } from '../lib/inlineMarkdown'
-import type { ParsedReadingModule } from '../types/modules'
+import type { ParsedReadingModule, SectionIllustrations } from '../types/modules'
 import type { ReaderBlock, Unit } from '../types/reading'
 import { SectionDropdown } from './SectionDropdown'
 import { TopButton } from './TopButton'
@@ -24,12 +24,14 @@ type ReaderScreenProps = {
   compactText: boolean
   onToggleTextSize: () => void
   getBlockStatus: (blockRef: string | null | undefined) => BlockReviewStatus
+  illustrations: SectionIllustrations | null
 }
 
 type PointerStart = {
   x: number
   y: number
   moved: boolean
+  pointerType: string
   scrollTop: number
 }
 
@@ -51,10 +53,12 @@ export function ReaderScreen({
   compactText,
   onToggleTextSize,
   getBlockStatus,
+  illustrations,
 }: ReaderScreenProps) {
+  const [illustrationModalBlockId, setIllustrationModalBlockId] = useState<string | null>(null)
   const touchStart = useRef<PointerStart | null>(null)
   const panelScrollRef = useRef<HTMLDivElement | null>(null)
-  const minSwipeDistance = 50
+  const minSwipeDistance = 60
   const tapTolerance = 8
   const scrollTolerance = 10
   const percent = totalBlocks ? Math.min(100, Math.round(((currentIndex + 1) / totalBlocks) * 100)) : 0
@@ -64,6 +68,7 @@ export function ReaderScreen({
       x: event.clientX,
       y: event.clientY,
       moved: false,
+      pointerType: event.pointerType,
       scrollTop: panelScrollRef.current?.scrollTop ?? 0,
     }
   }
@@ -82,19 +87,38 @@ export function ReaderScreen({
     const distanceX = touchStart.current.x - event.clientX
     const distanceY = touchStart.current.y - event.clientY
     const moved = touchStart.current.moved
+    const isTouch = touchStart.current.pointerType === 'touch'
     const scrollDelta = Math.abs(
       (panelScrollRef.current?.scrollTop ?? 0) - touchStart.current.scrollTop,
     )
     touchStart.current = null
     if (scrollDelta > scrollTolerance) return
-    if (distanceX > minSwipeDistance && Math.abs(distanceY) < 24) onAdvance()
-    else if (distanceX < -minSwipeDistance && Math.abs(distanceY) < 24) onRetreat()
+    const horizontalDominates = Math.abs(distanceX) > Math.abs(distanceY) * 1.35
+    if (isTouch && distanceX > minSwipeDistance && horizontalDominates) onAdvance()
+    else if (isTouch && distanceX < -minSwipeDistance && horizontalDominates) onRetreat()
     else if (!moved && Math.abs(distanceX) < tapTolerance && Math.abs(distanceY) < tapTolerance) {
       onAdvance()
     }
   }
 
   const readerTextClass = compactText ? 'reader-text is-compact' : 'reader-text'
+  const illustrationCount = illustrations?.images.length ?? 0
+  const illustrationModalOpen = Boolean(
+    illustrations && currentBlock && illustrationModalBlockId === currentBlock.id,
+  )
+
+  useEffect(() => {
+    if (!illustrationModalOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIllustrationModalBlockId(null)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [illustrationModalOpen])
 
   return (
     <div className="reader-screen">
@@ -103,6 +127,11 @@ export function ReaderScreen({
           <TopButton onClick={onBack}>Temas</TopButton>
           <TopButton onClick={onRetreat}>Retroceder</TopButton>
           <TopButton onClick={onToggleTextSize}>{compactText ? 'Texto normal' : 'Texto -25%'}</TopButton>
+          {illustrations && illustrationCount > 0 && (
+            <TopButton onClick={() => setIllustrationModalBlockId(currentBlock?.id ?? null)}>
+              Ilustración ({illustrationCount})
+            </TopButton>
+          )}
         </div>
 
         <SectionDropdown
@@ -165,6 +194,50 @@ export function ReaderScreen({
           </div>
         </div>
       </div>
+
+      {illustrationModalOpen && illustrations && (
+        <div
+          aria-labelledby="illustration-modal-title"
+          aria-modal="true"
+          className="illustration-modal-backdrop"
+          onClick={() => setIllustrationModalBlockId(null)}
+          role="dialog"
+        >
+          <div
+            className="illustration-modal panel-outline"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="illustration-modal-header">
+              <div>
+                <p>{module.title} / {unit.title}</p>
+                <h2 id="illustration-modal-title">{illustrations.sectionTitle}</h2>
+              </div>
+              <button
+                aria-label="Cerrar ilustraciones"
+                className="illustration-close panel-outline"
+                onClick={() => setIllustrationModalBlockId(null)}
+                type="button"
+              >
+                Cerrar
+              </button>
+            </div>
+
+            <div className="illustration-grid" aria-label={`Ilustraciones de ${illustrations.sectionTitle}`}>
+              {illustrations.images.map((image, index) => (
+                <figure className="illustration-card" key={image}>
+                  <img
+                    alt={`${illustrations.sectionTitle}, ilustracion ${index + 1}`}
+                    className="illustration-image"
+                    decoding="async"
+                    loading="lazy"
+                    src={image}
+                  />
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

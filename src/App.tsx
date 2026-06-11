@@ -1,7 +1,7 @@
 import './styles.css'
 import { useMemo, useState } from 'react'
 import { areas } from './data/areas'
-import { modules } from './data/modules'
+import { illustrationSectionKey, modules } from './data/modules'
 import { AreaMenu } from './reader/components/AreaMenu'
 import { DownloadManagerPanel } from './reader/components/DownloadManagerPanel'
 import { MainMenu } from './reader/components/MainMenu'
@@ -202,6 +202,17 @@ function App() {
             compactText={session.compactText}
             onToggleTextSize={session.toggleTextSize}
             getBlockStatus={questionProgress.getBlockStatus}
+            illustrations={
+              session.currentBlock
+                ? view.module.illustrationsBySection[
+                    illustrationSectionKey(
+                      session.currentBlock.unitId,
+                      session.currentBlock.themeId,
+                      session.currentBlock.sectionId,
+                    )
+                  ] ?? null
+                : null
+            }
           />
         )}
       </Shell>

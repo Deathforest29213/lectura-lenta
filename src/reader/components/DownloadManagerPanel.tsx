@@ -56,8 +56,37 @@ const outdatedThemeTitles = (module: ParsedReadingModule, offline: OfflineApi) =
   )
 }
 
-const downloadedVersionText = (module: ParsedReadingModule, offline: OfflineApi) =>
-  offline.getRecord(module.id)?.moduleVersion ?? '-'
+const versionParts = (version: string) =>
+  version.split('.').map((part) => Number.parseInt(part, 10) || 0)
+
+const compareVersions = (a: string, b: string) => {
+  const aParts = versionParts(a)
+  const bParts = versionParts(b)
+  const length = Math.max(aParts.length, bParts.length)
+
+  for (let index = 0; index < length; index += 1) {
+    const diff = (aParts[index] ?? 0) - (bParts[index] ?? 0)
+    if (diff !== 0) return diff
+  }
+
+  return 0
+}
+
+const versionSummary = (versions: string[]) => {
+  const uniqueVersions = Array.from(new Set(versions)).sort(compareVersions)
+  if (!uniqueVersions.length) return '-'
+  if (uniqueVersions.length === 1) return uniqueVersions[0]
+  if (uniqueVersions.length === 2) return uniqueVersions.join(' / ')
+  return `${uniqueVersions[0]} - ${uniqueVersions[uniqueVersions.length - 1]}`
+}
+
+const currentVersionText = (module: ParsedReadingModule) =>
+  versionSummary(Object.values(module.topicVersions))
+
+const downloadedVersionText = (module: ParsedReadingModule, offline: OfflineApi) => {
+  const record = offline.getRecord(module.id)
+  return record ? versionSummary(Object.values(record.topicVersions)) : '-'
+}
 
 export function DownloadManagerPanel({
   areas,
@@ -84,7 +113,8 @@ export function DownloadManagerPanel({
       <TitleBar warning={offline.versionAlerts.length > 0}>Descargas</TitleBar>
       <p className="intro">
         Administra el contenido offline por area. Las alertas amarillas indican temas descargados
-        con una version antigua.
+        con una version antigua. Versionado: X remake del contenido original, Y mejoras de
+        funcionalidad, Z actualizacion del contenido de estudio.
       </p>
 
       <div className="download-area-list" aria-label="Descargas por area">
@@ -157,7 +187,7 @@ export function DownloadManagerPanel({
                         </strong>
                       </span>
                       <span role="cell">{statusText(status)}</span>
-                      <span role="cell">{module.version}</span>
+                      <span role="cell">{currentVersionText(module)}</span>
                       <span role="cell">{downloadedVersionText(module, offline)}</span>
                       <span role="cell">
                         <button

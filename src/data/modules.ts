@@ -8,7 +8,8 @@ import { moduleDefinition as optimizacion } from '../modules/programacion-optimi
 import { moduleDefinition as patronesDiseno } from '../modules/programacion-patrones-diseno/module'
 import { parseMarkdownLibrary } from '../reader/lib/markdownParser'
 import { parseRelevantQuestionMap } from '../reader/lib/questionMapParser'
-import type { ParsedReadingModule, RawReadingModule } from '../reader/types/modules'
+import type { IllustrationLink, ParsedReadingModule, RawReadingModule } from '../reader/types/modules'
+import { illustrationLinks } from './illustrationLinks'
 import { visualSummaries } from './visualSummaries'
 
 const rawModules: RawReadingModule[] = [
@@ -22,12 +23,37 @@ const rawModules: RawReadingModule[] = [
   rompeBarreraNo,
 ]
 
+export const illustrationSectionKey = (unitId: string, themeId: string | null, sectionId: string) =>
+  [unitId, themeId ?? 'unit', sectionId].join(':')
+
+const buildIllustrationsBySection = (links: IllustrationLink[]) =>
+  links.reduce<ParsedReadingModule['illustrationsBySection']>((sections, link) => {
+    const key = illustrationSectionKey(link.unitId, link.themeId, link.sectionId)
+    const current = sections[key]
+
+    sections[key] = {
+      unitTitle: link.unitTitle,
+      themeTitle: link.themeTitle,
+      sectionTitle: link.sectionTitle,
+      images: Array.from(new Set([...(current?.images ?? []), ...link.images])),
+      sourceParagraphs: Array.from(
+        new Set([...(current?.sourceParagraphs ?? []), ...link.sourceParagraphs]),
+      ),
+    }
+
+    return sections
+  }, {})
+
 const buildModule = (module: RawReadingModule): ParsedReadingModule => {
   const moduleVisualSummaries = {
     ...visualSummaries[module.id],
     ...module.visualSummaries,
   }
-  const visualSummaryAssets = Object.values(moduleVisualSummaries).flat()
+  const moduleIllustrationLinks = illustrationLinks[module.id] ?? []
+  const illustrationAssets = moduleIllustrationLinks.flatMap((link) => link.images)
+  const visualSummaryAssets = Array.from(
+    new Set([...Object.values(moduleVisualSummaries).flat(), ...illustrationAssets]),
+  )
   const initialLibrary = parseMarkdownLibrary(module.markdown, {}, module.version, module.id)
   const generatedTopicVersions = Object.fromEntries(
     initialLibrary.flatMap((unit) =>
@@ -43,6 +69,7 @@ const buildModule = (module: RawReadingModule): ParsedReadingModule => {
     ...module,
     assets: [...module.assets, ...visualSummaryAssets],
     visualSummaries: moduleVisualSummaries,
+    illustrationsBySection: buildIllustrationsBySection(moduleIllustrationLinks),
     relevantQuestions: parseRelevantQuestionMap(module.relevantQuestionsMarkdown),
     topicVersions,
     library: parseMarkdownLibrary(module.markdown, topicVersions, module.version, module.id),

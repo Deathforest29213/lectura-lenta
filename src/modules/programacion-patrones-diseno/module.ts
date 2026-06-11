@@ -12,4 +12,9 @@ export const moduleDefinition: RawReadingModule = {
   relevantQuestionsMarkdown,
   assets: [],
   theme: 'renal',
+  topicVersionOverrides: {
+    'tema-1-que-es-un-patron-de-diseno': '1.1.0',
+    'tema-2-como-estudiar-un-patron': '1.1.0',
+    'tema-3-uso-cuidadoso': '1.1.0',
+  },
 }

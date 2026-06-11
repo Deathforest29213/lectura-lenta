@@ -221,6 +221,7 @@ export const flattenSections = (
     const contentBlocks = section.blocks.map((block, blockIndex) => ({
       id: `${themeId ?? 'all'}-${block.id}-${blockIndex}`,
       sourceBlockRefId: block.refId,
+      sectionId: section.id,
       sectionTitle: section.title,
       blockLabel: `Bloque ${blockIndex + 1}`,
       orderLabel: `${sectionIndex + 1}.${blockIndex + 1}`,
@@ -235,6 +236,7 @@ export const flattenSections = (
       {
         id: `${themeId ?? 'all'}-${section.id}-delimiter`,
         sourceBlockRefId: null,
+        sectionId: section.id,
         sectionTitle: section.title,
         blockLabel: 'Delimitador',
         orderLabel: `${sectionIndex + 1}.x`,

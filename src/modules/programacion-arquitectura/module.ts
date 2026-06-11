@@ -12,4 +12,11 @@ export const moduleDefinition: RawReadingModule = {
   relevantQuestionsMarkdown,
   assets: [],
   theme: 'renal',
+  topicVersionOverrides: {
+    'tema-1-que-es-arquitectura': '1.1.0',
+    'tema-2-separacion-de-responsabilidades': '1.1.0',
+    'tema-3-acoplamiento-y-cohesion': '1.1.0',
+    'tema-4-modularidad': '1.1.0',
+    'tema-5-capas': '1.1.0',
+  },
 }

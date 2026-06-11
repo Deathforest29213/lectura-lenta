@@ -10,4 +10,10 @@ export const moduleDefinition: RawReadingModule = {
   markdown,
   assets: [],
   theme: 'renal',
+  topicVersionOverrides: {
+    'tema-1-sodio-natremia-y-volumen-extracelular': '1.1.0',
+    'tema-2-regulacion-renal-y-hormonal-del-sodio': '1.1.0',
+    'tema-3-osmorregulacion-sed-y-adh': '1.1.0',
+    'tema-4-balance-de-agua-y-concentracion-dilucion-urinaria': '1.1.0',
+  },
 }

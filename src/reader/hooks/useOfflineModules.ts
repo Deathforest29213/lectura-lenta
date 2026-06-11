@@ -8,6 +8,9 @@ import type {
 
 const STORAGE_KEY = 'lectura-lenta:offline-modules'
 
+const hasVersionChanged = (downloadedVersion: string | undefined, currentVersion: string) =>
+  Boolean(downloadedVersion && downloadedVersion !== currentVersion)
+
 const readRecords = (): OfflineModuleRecord[] => {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -36,7 +39,7 @@ export function useOfflineModules(modules: ParsedReadingModule[]) {
 
       for (const unit of module.library) {
         for (const theme of unit.themes) {
-          if (record.topicVersions[theme.id] && record.topicVersions[theme.id] !== theme.version) {
+          if (hasVersionChanged(record.topicVersions[theme.id], theme.version)) {
             alerts.push({ moduleId: module.id, unitId: unit.id, themeId: theme.id })
           }
         }
