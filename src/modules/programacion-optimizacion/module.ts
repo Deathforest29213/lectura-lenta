@@ -10,4 +10,10 @@ export const moduleDefinition: RawReadingModule = {
   markdown,
   assets: [],
   theme: 'renal',
+  topicVersionOverrides: {
+    'tema-1-modelo-mental-de-optimizacion': '1.1.0',
+    'tema-2-pruebas-y-metricas-de-rendimiento': '1.1.0',
+    'tema-3-cargar-menos-al-inicio': '1.1.0',
+    'tema-4-controlar-frecuencia-y-carga-pesada': '1.1.0',
+  },
 }

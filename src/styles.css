@@ -457,6 +457,7 @@
 .all-themes-button:focus-visible,
 .small-action:focus-visible,
 .gallery-card:focus-visible,
+.illustration-card:focus-visible,
 .gallery-lightbox-zone:focus-visible .gallery-lightbox-arrow,
 .illustration-close:focus-visible,
 .section-dropdown-trigger:focus-visible,
@@ -1007,7 +1008,9 @@
   border-radius: 16px;
   background: rgba(34, 39, 47, 0.56);
   box-shadow: var(--shadow-soft);
+  cursor: zoom-in;
   margin: 0;
+  padding: 0;
 }
 
 .illustration-image {

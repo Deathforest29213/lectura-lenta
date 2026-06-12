@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type PointerEvent } from 'react'
 import { isDelimiterBlock, renderInlineMarkdown, stripInlineMarkdown } from '../lib/inlineMarkdown'
 import type { ParsedReadingModule, SectionIllustrations } from '../types/modules'
 import type { ReaderBlock, Unit } from '../types/reading'
@@ -35,6 +35,12 @@ type PointerStart = {
   scrollTop: number
 }
 
+type LightboxPointerStart = {
+  x: number
+  y: number
+  pointerType: string
+}
+
 export function ReaderScreen({
   module,
   unit,
@@ -56,7 +62,12 @@ export function ReaderScreen({
   illustrations,
 }: ReaderScreenProps) {
   const [illustrationModalBlockId, setIllustrationModalBlockId] = useState<string | null>(null)
+  const [activeIllustrationIndex, setActiveIllustrationIndex] = useState<number | null>(null)
+  const [lightboxControlsVisible, setLightboxControlsVisible] = useState(false)
   const touchStart = useRef<PointerStart | null>(null)
+  const controlsTimer = useRef<number | null>(null)
+  const lightboxPointerStart = useRef<LightboxPointerStart | null>(null)
+  const ignoreNextLightboxClick = useRef(false)
   const panelScrollRef = useRef<HTMLDivElement | null>(null)
   const minSwipeDistance = 60
   const tapTolerance = 8
@@ -106,19 +117,125 @@ export function ReaderScreen({
   const illustrationModalOpen = Boolean(
     illustrations && currentBlock && illustrationModalBlockId === currentBlock.id,
   )
+  const activeIllustration =
+    illustrations && activeIllustrationIndex !== null
+      ? illustrations.images[activeIllustrationIndex]
+      : null
+  const activeIllustrationNumber =
+    activeIllustrationIndex === null ? null : activeIllustrationIndex + 1
+  const hasIllustrationNavigation = illustrationCount > 1
+
+  const showLightboxControlsTemporarily = () => {
+    if (controlsTimer.current !== null) {
+      window.clearTimeout(controlsTimer.current)
+    }
+
+    setLightboxControlsVisible(true)
+    controlsTimer.current = window.setTimeout(() => {
+      setLightboxControlsVisible(false)
+      controlsTimer.current = null
+    }, 1000)
+  }
+
+  const openIllustrationLightbox = (imageIndex: number) => {
+    setActiveIllustrationIndex(imageIndex)
+    showLightboxControlsTemporarily()
+  }
+
+  const closeIllustrationLightbox = useCallback(() => {
+    if (controlsTimer.current !== null) {
+      window.clearTimeout(controlsTimer.current)
+      controlsTimer.current = null
+    }
+
+    setActiveIllustrationIndex(null)
+    setLightboxControlsVisible(false)
+  }, [])
+
+  const closeIllustrationModal = useCallback(() => {
+    closeIllustrationLightbox()
+    setIllustrationModalBlockId(null)
+  }, [closeIllustrationLightbox])
+
+  const showPreviousIllustration = () => {
+    setActiveIllustrationIndex((currentIndex) => {
+      if (currentIndex === null) return currentIndex
+      return currentIndex === 0 ? illustrationCount - 1 : currentIndex - 1
+    })
+    showLightboxControlsTemporarily()
+  }
+
+  const showNextIllustration = () => {
+    setActiveIllustrationIndex((currentIndex) => {
+      if (currentIndex === null) return currentIndex
+      return currentIndex === illustrationCount - 1 ? 0 : currentIndex + 1
+    })
+    showLightboxControlsTemporarily()
+  }
+
+  const onLightboxPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    lightboxPointerStart.current = {
+      x: event.clientX,
+      y: event.clientY,
+      pointerType: event.pointerType,
+    }
+  }
+
+  const onLightboxPointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (!lightboxPointerStart.current || !hasIllustrationNavigation) {
+      lightboxPointerStart.current = null
+      return
+    }
+
+    const distanceX = lightboxPointerStart.current.x - event.clientX
+    const distanceY = lightboxPointerStart.current.y - event.clientY
+    const isTouch = lightboxPointerStart.current.pointerType === 'touch'
+    const horizontalDominates = Math.abs(distanceX) > Math.abs(distanceY) * 1.35
+    lightboxPointerStart.current = null
+
+    if (!isTouch || Math.abs(distanceX) <= minSwipeDistance || !horizontalDominates) return
+
+    ignoreNextLightboxClick.current = true
+
+    if (distanceX > 0) {
+      showNextIllustration()
+    } else {
+      showPreviousIllustration()
+    }
+  }
+
+  const shouldIgnoreLightboxClick = () => {
+    if (!ignoreNextLightboxClick.current) return false
+
+    ignoreNextLightboxClick.current = false
+    return true
+  }
 
   useEffect(() => {
     if (!illustrationModalOpen) return
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIllustrationModalBlockId(null)
+        if (activeIllustration) {
+          closeIllustrationLightbox()
+        } else {
+          closeIllustrationModal()
+        }
       }
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [illustrationModalOpen])
+  }, [activeIllustration, closeIllustrationLightbox, closeIllustrationModal, illustrationModalOpen])
+
+  useEffect(
+    () => () => {
+      if (controlsTimer.current !== null) {
+        window.clearTimeout(controlsTimer.current)
+      }
+    },
+    [],
+  )
 
   return (
     <div className="reader-screen">
@@ -128,7 +245,12 @@ export function ReaderScreen({
           <TopButton onClick={onRetreat}>Retroceder</TopButton>
           <TopButton onClick={onToggleTextSize}>{compactText ? 'Texto normal' : 'Texto -25%'}</TopButton>
           {illustrations && illustrationCount > 0 && (
-            <TopButton onClick={() => setIllustrationModalBlockId(currentBlock?.id ?? null)}>
+            <TopButton
+              onClick={() => {
+                closeIllustrationLightbox()
+                setIllustrationModalBlockId(currentBlock?.id ?? null)
+              }}
+            >
               Ilustración ({illustrationCount})
             </TopButton>
           )}
@@ -200,7 +322,7 @@ export function ReaderScreen({
           aria-labelledby="illustration-modal-title"
           aria-modal="true"
           className="illustration-modal-backdrop"
-          onClick={() => setIllustrationModalBlockId(null)}
+          onClick={closeIllustrationModal}
           role="dialog"
         >
           <div
@@ -215,7 +337,7 @@ export function ReaderScreen({
               <button
                 aria-label="Cerrar ilustraciones"
                 className="illustration-close panel-outline"
-                onClick={() => setIllustrationModalBlockId(null)}
+                onClick={closeIllustrationModal}
                 type="button"
               >
                 Cerrar
@@ -224,7 +346,13 @@ export function ReaderScreen({
 
             <div className="illustration-grid" aria-label={`Ilustraciones de ${illustrations.sectionTitle}`}>
               {illustrations.images.map((image, index) => (
-                <figure className="illustration-card" key={image}>
+                <button
+                  aria-label={`Ampliar ilustracion ${index + 1} de ${illustrations.sectionTitle}`}
+                  className="illustration-card"
+                  key={image}
+                  onClick={() => openIllustrationLightbox(index)}
+                  type="button"
+                >
                   <img
                     alt={`${illustrations.sectionTitle}, ilustracion ${index + 1}`}
                     className="illustration-image"
@@ -232,10 +360,75 @@ export function ReaderScreen({
                     loading="lazy"
                     src={image}
                   />
-                </figure>
+                </button>
               ))}
             </div>
           </div>
+
+          {activeIllustration && (
+            <div
+              aria-label="Imagen ampliada de ilustracion"
+              aria-modal="true"
+              className={`gallery-lightbox${lightboxControlsVisible ? '' : ' is-controls-hidden'}`}
+              onClick={(event) => {
+                event.stopPropagation()
+                if (shouldIgnoreLightboxClick()) return
+                closeIllustrationLightbox()
+              }}
+              onPointerCancel={() => {
+                lightboxPointerStart.current = null
+              }}
+              onPointerDown={onLightboxPointerDown}
+              onPointerMove={showLightboxControlsTemporarily}
+              onPointerUp={onLightboxPointerUp}
+              role="dialog"
+            >
+              {hasIllustrationNavigation && (
+                <button
+                  aria-label="Ilustracion anterior"
+                  className="gallery-lightbox-zone gallery-lightbox-zone-left"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    if (shouldIgnoreLightboxClick()) return
+                    showPreviousIllustration()
+                  }}
+                  type="button"
+                >
+                  <span className="gallery-lightbox-arrow" aria-hidden="true">
+                    &lt;
+                  </span>
+                </button>
+              )}
+
+              <img
+                alt={`${illustrations.sectionTitle}, ilustracion ampliada ${activeIllustrationNumber}`}
+                className="gallery-lightbox-image"
+                decoding="async"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  shouldIgnoreLightboxClick()
+                }}
+                src={activeIllustration}
+              />
+
+              {hasIllustrationNavigation && (
+                <button
+                  aria-label="Ilustracion siguiente"
+                  className="gallery-lightbox-zone gallery-lightbox-zone-right"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    if (shouldIgnoreLightboxClick()) return
+                    showNextIllustration()
+                  }}
+                  type="button"
+                >
+                  <span className="gallery-lightbox-arrow" aria-hidden="true">
+                    &gt;
+                  </span>
+                </button>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

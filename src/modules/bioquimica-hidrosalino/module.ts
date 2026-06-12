@@ -15,5 +15,11 @@ export const moduleDefinition: RawReadingModule = {
     'tema-2-regulacion-renal-y-hormonal-del-sodio': '1.1.0',
     'tema-3-osmorregulacion-sed-y-adh': '1.1.0',
     'tema-4-balance-de-agua-y-concentracion-dilucion-urinaria': '1.1.0',
+    'tema-1-alteraciones-del-volumen': '1.1.0',
+    'tema-2-alteraciones-de-la-osmolalidad-y-natremia': '1.1.0',
+    'tema-3-poliuria-cloruro-y-regulacion-electrolitica': '1.1.0',
+    'tema-1-metabolismo-del-potasio': '1.1.0',
+    'tema-2-alteraciones-del-potasio': '1.1.0',
+    'tema-3-determinacion-de-electrolitos': '1.1.0',
   },
 }

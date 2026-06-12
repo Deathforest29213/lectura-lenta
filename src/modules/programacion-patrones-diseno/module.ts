@@ -16,5 +16,9 @@ export const moduleDefinition: RawReadingModule = {
     'tema-1-que-es-un-patron-de-diseno': '1.1.0',
     'tema-2-como-estudiar-un-patron': '1.1.0',
     'tema-3-uso-cuidadoso': '1.1.0',
+    'tema-1-idea-general': '1.1.0',
+    'tema-2-factory-method-y-abstract-factory': '1.1.0',
+    'tema-3-builder-y-prototype': '1.1.0',
+    'tema-4-singleton': '1.1.0',
   },
 }

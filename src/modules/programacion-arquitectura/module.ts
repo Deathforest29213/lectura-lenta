@@ -18,5 +18,9 @@ export const moduleDefinition: RawReadingModule = {
     'tema-3-acoplamiento-y-cohesion': '1.1.0',
     'tema-4-modularidad': '1.1.0',
     'tema-5-capas': '1.1.0',
+    'tema-1-clean-code': '1.1.0',
+    'tema-2-paradigmas-de-programacion': '1.1.0',
+    'tema-3-principios-solid': '1.1.0',
+    'tema-4-principios-arquitectonicos': '1.1.0',
   },
 }

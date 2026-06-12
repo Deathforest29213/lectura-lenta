@@ -5,6 +5,8 @@ type: content_record
 format_version: llm-wiki-record-v1
 source_files:
   - Hidrosalino I.pdf
+  - 3. Hidrosal.pdf
+  - 4. Hidrosal.pdf
 ---
 
 
@@ -343,3 +345,408 @@ Por ejemplo:
 
 #### block: 5
 En clínica se observan con frecuencia variaciones, como por ejemplo en el diabético descompensado, que tiene poliuria osmótica debido a la glucosuria.
+
+
+# unit: Unidad 3 - Hidrosalino III
+
+## theme: Tema 1 - Alteraciones del volumen
+
+### section: Hipovolemia
+
+#### block: 1
+Hipovolemia es la disminución del volumen intravascular, que se traduce en un menor volumen circulante efectivo para los diferentes órganos.
+
+#### block: 2
+Las causas más frecuentes son:
+- Pérdida de sangre: hemorragias, heridas, traumatismos, etc.
+- Pérdida de plasma: quemaduras extensas, pancreatitis aguda.
+- Pérdida de agua y electrólitos por causas renales o extrarrenales.
+
+#### block: 3
+Entre las causas renales de pérdida de agua y electrólitos se incluyen abuso de diuréticos, poliuria osmótica, déficit de mineralocorticoides, poliuria postobstructiva, nefropatía perdedora de sodio y diabetes insípida.
+
+#### block: 4
+Entre las causas extrarrenales se incluyen diarreas, vómitos, pérdidas por fístulas o sondas, acumulación de líquido en el intersticio o en vísceras huecas, como íleo, y pérdidas cutáneas.
+
+#### block: 5
+El tratamiento de la hipovolemia consiste en la reposición de volumen para expandir el espacio intravascular. Esto puede conseguirse, dependiendo de la situación clínica, con sangre total, plasma, soluciones electrolíticas, etc.
+
+### section: Reduccion de volumen extracelular
+
+#### block: 1
+Hipovolemia o reducción de volumen es sinónimo de disminución de volumen intravascular. Ocurre cuando existe pérdida de sangre, o de sodio y agua del espacio extracelular.
+
+#### block: 2
+Debido a que el volumen del espacio extracelular depende básicamente del contenido total de sodio, para que un paciente desarrolle hipovolemia es una condición esencial que exista un déficit o reducción de sodio.
+
+#### block: 3
+La respuesta hemodinámica a la reducción de volumen consiste en un estímulo de la actividad simpática, del sistema renina-angiotensina y de la secreción de ADH, y en una disminución de la secreción del factor natriurético.
+
+#### block: 4
+Deshidratación es la pérdida aislada de agua con hipernatremia secundaria. En estos casos los pacientes presentan signos y síntomas de hipernatremia con signos mínimos o ausentes de hipovolemia, ya que la reducción del volumen intravascular es mínima.
+
+#### block: 5
+La reducción del volumen intravascular es mínima en la deshidratación porque la pérdida de agua es compartida por los espacios intracelular y extracelular. La mayor parte proviene del espacio intracelular, dos terceras partes, mientras que menos de una décima parte del agua perdida procede del compartimiento vascular.
+
+#### block: 6
+Los síntomas inducidos por la reducción de volumen se deben a la disminución de la perfusión tisular y a la respuesta hemodinámica consiguiente. Inicialmente, los pacientes presentan debilidad, fatiga, sed y, según la gravedad de la hipovolemia, cefaleas, náuseas, calambres, hipotensión y mareos posturales.
+
+#### block: 7
+Si la hipovolemia es ligera o moderada, con pérdidas de hasta el 10% del volumen sanguíneo, equivalentes a una donación de 500 mL de sangre, la sintomatología suele ser escasa.
+
+#### block: 8
+Si la hipovolemia es intensa, con pérdidas superiores al 15-25% del volumen sanguíneo, es característica la aparición de shock hipovolémico con hipotensión, taquicardia, vasoconstricción periférica con extremidades frías y cianóticas, estupor y coma.
+
+#### block: 9
+Los signos físicos que sugieren reducción de volumen son sequedad de piel y mucosas, taquicardia en reposo, disminución de la presión venosa central, oliguria e hipotensión arterial.
+
+#### block: 10
+La respuesta renal a la reducción de volumen se manifiesta por retención de agua y sodio y azoemia prerrenal.
+
+#### block: 11
+La creatinina plasmática aumentará sólo si la hipovolemia es suficientemente grave para disminuir el FG. En muchas situaciones de reducción de volumen, como ocurre en pérdidas por drenajes biliares, el líquido perdido es isosmótico con el plasma, por lo que la concentración plasmática de sodio no se modifica sustancialmente.
+
+#### block: 12
+La reducción de volumen estimula la sed y la secreción de ADH, por lo que pueden aumentar la ingesta de líquidos y la reabsorción renal de agua, favoreciendo la retención de agua y la aparición de hiponatremia.
+
+#### block: 13
+Dado que la albúmina y los hematíes están confinados en el espacio vascular, una reducción del volumen plasmático tenderá a elevar el hematocrito y la albúmina plasmática por hemoconcentración.
+
+#### block: 14
+Los efectos de la reducción de volumen sobre el equilibrio ácido-básico son variables y dependen del origen de la hipovolemia.
+
+### section: Aumento del volumen extracelular y edema
+
+#### block: 1
+Los edemas generalizados consisten en una acumulación excesiva de agua en el espacio intersticial, asociada invariablemente a una retención renal de sodio.
+
+#### block: 2
+Un aumento de la presión hidrostática o una disminución de la presión oncótica del capilar favorecen la aparición de edemas generalizados.
+
+#### block: 3
+En cuanto a su etiopatogenia, los estados edematosos generalizados se clasifican según el estado del volumen efectivo circulante, que es la parte del líquido extracelular que se encuentra en el espacio vascular y que es perfundido eficazmente a los tejidos.
+
+#### block: 4
+En la insuficiencia cardíaca congestiva, la cirrosis hepática y el síndrome nefrótico existe una disminución del volumen efectivo circulante que estimula la reabsorción renal de sodio y agua, y la aparición de edemas.
+
+#### block: 5
+En los edemas con aumento del volumen efectivo circulante, la causa inicial de la formación de edemas generalizados se encuentra en el propio riñón, que retiene una cantidad excesiva de agua y sal.
+
+#### block: 6
+Los edemas con aumento del volumen efectivo circulante pueden observarse en enfermedades renales con un FG relativamente conservado, como la glomerulonefritis aguda, o en insuficiencia renal avanzada.
+
+#### block: 7
+Diversos fármacos con acción vasodilatadora periférica, utilizados en el tratamiento de la hipertensión arterial, pueden inducir edemas. Otros fármacos que pueden causar edemas son antiinflamatorios no esteroidales, preparados que contienen estrógenos y preparados de glucocorticoides.
+
+#### block: 8
+Los edemas localizados se restringen a un órgano o territorio vascular determinado. Se producen por aumento de la presión hidrostática capilar inducida por obstrucción venosa, como trombosis venosa, o linfática, como procesos neoplásicos.
+
+#### block: 9
+Los edemas localizados también pueden estar causados por un aumento de la permeabilidad capilar, como ocurre en diversos procesos inflamatorios, traumatismos o quemaduras.
+
+## theme: Tema 2 - Alteraciones de la osmolalidad y natremia
+
+### section: Natremia e hiponatremia
+
+#### block: 1
+El sodio es el principal catión extracelular y el mayor contribuyente a la osmolalidad del líquido extracelular y, por lo tanto, del plasma.
+
+#### block: 2
+La concentración normal de sodio varía entre 136 y 142 mEq/L.
+
+#### block: 3
+Hiponatremia se define como la concentración de sodio plasmático inferior a 136 mEq/L. Es el trastorno hidroelectrolítico más frecuente en clínica.
+
+#### block: 4
+Como el sodio es el principal osmol del líquido extracelular, en la mayoría de los casos la hiponatremia es sinónimo de hipoosmolalidad.
+
+### section: Seudohiponatremias
+
+#### block: 1
+Antes de referirse a las verdaderas hiponatremias, conviene recordar la posible existencia de falsas hiponatremias o seudohiponatremias.
+
+#### block: 2
+Una seudohiponatremia puede presentarse en pacientes con intensa hiperlipemia, como hiperlipemias familiares, síndrome nefrótico o pancreatitis, o con importantes hiperproteinemias, como mieloma o macroglobulinemia.
+
+#### block: 3
+Estas falsas hiponatremias no tienen significado clínico, los pacientes están asintomáticos, y se distinguen porque la osmolalidad plasmática es normal.
+
+#### block: 4
+Un segundo tipo de seudohiponatremia se presenta cuando existe exceso de sustancias osmóticamente activas en el espacio extracelular que no penetran fácilmente en las células, como glucosa, manitol o glicina. Esto provoca paso de agua del espacio intracelular al extracelular e induce hiponatremia dilucional.
+
+#### block: 5
+En situaciones de hiperglicemia, por cada 100 mg/dL de ascenso de la glicemia, la natremia desciende 1,6 mEq/L. En estos casos, la osmolalidad plasmática estará elevada por la propia glucosa.
+
+### section: Hiponatremia verdadera y clasificacion por volumen
+
+#### block: 1
+La hiponatremia verdadera o síndrome hipoosmolal es, en general, consecuencia de una incapacidad para diluir suficientemente la orina y se acompaña siempre de hipoosmolalidad plasmática.
+
+#### block: 2
+Una causa de hiponatremia verdadera es la secreción continua de ADH a pesar de la hipoosmolalidad plasmática que debería frenarla. Esto ocurre en el SIADH, o en la secreción fisiológica de ADH inducida por hipovolemia.
+
+#### block: 3
+Otra causa es la asociación con una ingesta excesiva o compulsiva de agua, situación que se presenta con mayor frecuencia en pacientes psiquiátricos, como polidipsia psicógena.
+
+#### block: 4
+Las hiponatremias se valoran de acuerdo con el volumen bajo, normal o alto del espacio extracelular.
+
+#### block: 5
+La hiponatremia con volumen extracelular disminuido ocurre cuando hay pérdidas simultáneas de agua y sal. La ingestión simultánea de agua acentúa la hiponatremia.
+
+#### block: 6
+La disminución del volumen extracelular se manifiesta por pérdida de peso, hipotensión, taquicardia y sequedad de piel y mucosas.
+
+#### block: 7
+Cuando la pérdida de volumen extracelular es extrarrenal, por ejemplo gastrointestinal, el paciente se presentará oligúrico y con natriuria inferior a 10 mEq/L. En un intento de ahorrar agua y sodio, puede incluso desarrollarse insuficiencia renal funcional con alta osmolalidad urinaria.
+
+#### block: 8
+Cuando la causa de la reducción extracelular reside en el propio riñón, como ocurre con diuréticos, el sodio urinario será superior a 20 mEq/L.
+
+#### block: 9
+La reducción de volumen de causa extrarrenal se observa con sodio urinario inferior a 10 mEq/L y puede producirse por pérdidas gastrointestinales, como vómitos o diarreas.
+
+#### block: 10
+Ante la falta de vómitos o diarreas, puede sospecharse un tercer espacio, por ejemplo peritonitis, pancreatitis, quemaduras o traumatismos musculares, situaciones que implican pérdida de líquido y electrólitos intravasculares.
+
+#### block: 11
+Otras causas de hiponatremia con volumen extracelular disminuido incluyen bicarbonaturia que arrastra eléctricamente sodio, como en vómitos intensos con alcalosis metabólica, cetonuria por ayuno o diabetes con natriuria obligada, insuficiencia renal, nefropatías perdedoras de sal, enfermedad de Addison y abuso de diuréticos.
+
+#### block: 12
+La hiponatremia con volumen extracelular normal, o mínimamente aumentado, se incluye en pocas y relativamente raras situaciones.
+
+#### block: 13
+Las causas más frecuentes de hiponatremia con volumen extracelular normal se relacionan con secreción primaria e inadecuadamente alta de ADH.
+
+#### block: 14
+El estrés emocional y el dolor son estímulos hasta cierto punto fisiológicos para la secreción de ADH y, en ciertas circunstancias como los postoperatorios, pueden inducir hiponatremia.
+
+#### block: 15
+Numerosos fármacos estimulan la secreción de ADH o aumentan la sensibilidad renal a la ADH, y pueden inducir hiponatremia.
+
+#### block: 16
+El síndrome de secreción inapropiada de ADH provoca retención de agua sin sodio, con expansión mínima del volumen extracelular. Sus características biológicas incluyen hiponatremia, hipoosmolalidad, osmolalidad urinaria superior a la plasmática y natriuria elevada, superior a 20 mEq/L.
+
+#### block: 17
+La hiponatremia con volumen extracelular aumentado se observa en situaciones con edemas. En ellas hay balance positivo simultáneo de agua y sodio, aunque proporcionalmente mayor de agua.
+
+#### block: 18
+En la hiponatremia con volumen extracelular aumentado se desarrolla una hiponatremia dilucional a pesar de que el sodio corporal, en valores absolutos, esté elevado.
+
+### section: Hipernatremia
+
+#### block: 1
+La hipernatremia, definida como una concentración de sodio plasmático mayor de 143 mEq/L, es sinónimo de deshidratación.
+
+#### block: 2
+Junto con la hiperglicemia, la hipernatremia es la principal causa de hiperosmolalidad. Su frecuencia es muy inferior en comparación con la hiponatremia.
+
+#### block: 3
+La desproporción entre el sodio y el agua del plasma, en la mayoría de los casos, es consecuencia de un desbalance entre las pérdidas y la ingesta de agua.
+
+#### block: 4
+Dado que la hipernatremia desencadena el mecanismo de la sed y estimula la secreción de ADH, este trastorno tiende a corregirse espontáneamente con una mayor ingesta de agua.
+
+#### block: 5
+La hipernatremia es más frecuente en personas que, además de tener aumento de las pérdidas de agua, por vía renal o por pérdidas insensibles, no reponen adecuadamente este elemento por compromiso de conciencia, alteración de la sed o falta de disponibilidad de agua.
+
+## theme: Tema 3 - Poliuria, cloruro y regulacion electrolitica
+
+### section: Poliuria
+
+#### block: 1
+La poliuria es frecuente y puede encontrarse asociada con hipernatremia.
+
+#### block: 2
+Se define arbitrariamente como un volumen de orina superior a 3000 mL/día.
+
+#### block: 3
+Algunas poliurias son consecuencia de una ingesta exagerada de líquido, como polidipsia psicógena. Otras son primariamente debidas a un defecto de concentración renal.
+
+#### block: 4
+Fisiopatológicamente, las poliurias se separan en osmóticas y acuosas.
+
+#### block: 5
+La poliuria osmótica es generalmente secundaria a la excreción exagerada de un soluto que arrastra agua, como glucosa, sodio o urea.
+
+#### block: 6
+La poliuria acuosa es provocada por diabetes insípida central o nefrogénica, o por polidipsia psicógena.
+
+### section: Cloruro
+
+#### block: 1
+El cloruro, principal anión extracelular, sigue la disposición fisiológica del sodio. Los cambios en el balance ácido-base se reflejan por cambios de la concentración sérica de cloruro.
+
+#### block: 2
+El cloruro actúa junto al sodio para mantener la neutralidad eléctrica y la presión osmótica de la sangre.
+
+#### block: 3
+La reabsorción renal del cloruro es secundaria a la del sodio. Cada ion sodio reabsorbido se acompaña de un ion cloruro o de bicarbonato. La aldosterona controla indirectamente la reabsorción de cloruro.
+
+#### block: 4
+El cloruro también es esencial para la producción de ácido clorhídrico en el estómago.
+
+### section: Regulacion en los liquidos corporales
+
+#### block: 1
+La concentración normal de sodio en el LEC y la concentración de potasio en el LIC dependen de numerosos factores, en especial de la cantidad de ADH y de aldosterona secretadas.
+
+#### block: 2
+La ADH regula la concentración de electrolitos del LEC y la presión coloidosmótica, regulando la cantidad de agua que es reabsorbida hacia la sangre por los túbulos renales.
+
+#### block: 3
+La aldosterona controla el volumen del LEC, regulando la cantidad de sodio que es reabsorbido hacia la sangre por los túbulos renales.
+
+#### block: 4
+Si por cualquier razón es necesario conservar el sodio corporal, el riñón normal puede excretar una orina casi sin sodio, por lo que se considera el principal regulador de los niveles de sodio en los líquidos corporales.
+
+#### block: 5
+El sodio que se pierde a través del sudor puede incrementarse en gran medida si existen temperaturas ambientales elevadas o un estado febril. La sed lleva a reponer el agua perdida, pero no el sodio, y como consecuencia de la mayor ingesta de líquidos, el sodio restante se diluye aún más. Así, la pérdida de sodio a través del sudor no es un mecanismo de regulación.
+
+#### block: 6
+Además del movimiento regulado del sodio hacia el interior y exterior del organismo, y entre los compartimentos líquidos principales, existe circulación continua de este electrolito entre varias secreciones internas, como saliva, secreciones gástricas e intestinales, bilis y líquido pancreático.
+
+#### block: 7
+El cloruro es el anión extracelular más importante y casi siempre está ligado al sodio. Ambos suelen ingerirse juntos y proporcionan gran parte de la isotonicidad del líquido extracelular.
+
+#### block: 8
+Los iones cloruro se excretan por lo general por la orina como sales de potasio. Por esto, la deficiencia de cloro o hipocloremia suele producirse cuando hay pérdida de potasio.
+
+
+# unit: Unidad 4 - Hidrosalino IV
+
+## theme: Tema 1 - Metabolismo del potasio
+
+### section: Kalemia
+
+#### block: 1
+El potasio es un ion preferentemente intracelular, donde alcanza una concentración de 150 mEq/L.
+
+#### block: 2
+La concentración plasmática de potasio fluctúa entre 3,8 y 5,0 mEq/L, y es un buen reflejo del contenido de potasio corporal total.
+
+#### block: 3
+La dieta aporta entre 50 y 100 mEq de potasio al día. Alrededor de 10 mEq son excretados por deposiciones y transpiración, mientras que el resto es eliminado en la orina.
+
+#### block: 4
+A diferencia de lo que sucede con el sodio, el riñón es incapaz de disminuir la excreción urinaria de potasio a menos de 10 mEq/día. Por esto, la falta de aporte de potasio en la dieta provoca hipokalemia progresiva.
+
+#### block: 5
+La falta de aporte de potasio es casi imposible de observar en un individuo normal, pero puede suceder en pacientes hospitalizados, en quienes el aporte total de nutrientes y electrólitos se realiza por vía intravenosa sin suplementación adecuada de potasio.
+
+### section: Regulacion renal y acido-base del potasio
+
+#### block: 1
+El potasio de la dieta es filtrado en el riñón y se reabsorbe en alto porcentaje en los segmentos proximales del nefrón.
+
+#### block: 2
+En el túbulo distal se produce excreción de potasio, estimulada por la aldosterona, que a su vez es estimulada por las sobrecargas de potasio. De esta forma se mantiene el equilibrio entre ingresos y egresos.
+
+#### block: 3
+El pH del medio interno tiene importancia en la regulación de la concentración de potasio del LIC.
+
+#### block: 4
+En algunas acidosis metabólicas, los protones libres ingresan a la célula para tamponarse, siendo necesaria la salida de potasio hacia el LEC para mantener la electroneutralidad, lo que causa hiperkalemia. Lo contrario sucede en alcalosis.
+
+## theme: Tema 2 - Alteraciones del potasio
+
+### section: Hipokalemia
+
+#### block: 1
+La hipokalemia es un trastorno electrolítico frecuente y puede tener graves consecuencias si no se corrige oportunamente.
+
+#### block: 2
+Entre sus causas están las pérdidas gastrointestinales: diarreas, abuso de laxantes, vómitos y succión por sonda nasogástrica.
+
+#### block: 3
+En diarreas y abuso de laxantes, la hipokalemia se debe a pérdida directa de secreciones ricas en potasio.
+
+#### block: 4
+En vómitos y succión por sonda nasogástrica, aunque el contenido de potasio del jugo gástrico es bajo, la asociación con alcalosis metabólica por pérdida de protones, debido a jugo gástrico rico en HCl, determina paso de potasio al intracelular y moderado aumento de la excreción urinaria de potasio.
+
+#### block: 5
+El aumento de excreción urinaria de potasio ocurre porque, al aumentar la reabsorción renal de protones, se excreta potasio por la orina para mantener electroneutralidad.
+
+#### block: 6
+En las pérdidas intestinales, la excreción urinaria de potasio es habitualmente inferior a 20 mEq/día, lo que indica que la pérdida mayoritaria es extrarrenal.
+
+#### block: 7
+Otra causa de hipokalemia son las pérdidas urinarias por alteraciones tubulares renales, diuresis osmótica, diuresis postobstructiva, uso de diuréticos o glucocorticoides, e hiperaldosteronismo primario y secundario.
+
+#### block: 8
+En las pérdidas urinarias, el potasio urinario es habitualmente superior a 20 mEq/día.
+
+#### block: 9
+La ingesta inadecuada de potasio es muy poco frecuente, pero puede observarse en el hospital por déficit de suplementación de potasio en pacientes mantenidos con fluidos endovenosos. Su fisiopatología se explica por la incapacidad del riñón de reducir su excreción urinaria a menos de 10 mEq/día.
+
+#### block: 10
+El paso de potasio del LEC a las células ocurre en situaciones de alcalosis. Existe salida de protones desde las células, compensada con entrada de potasio hacia ellas.
+
+#### block: 11
+Las manifestaciones clínicas de la hipokalemia incluyen alteraciones musculares como debilidad, calambres, parestesias y, en casos extremos, parálisis flácida. También incluye alteraciones cardíacas como arritmias, aumento de la sensibilidad a digitálicos y cambios electrocardiográficos característicos.
+
+### section: Hiperkalemia
+
+#### block: 1
+Una causa frecuente de hiperkalemia es la disminución de su excreción, como ocurre en insuficiencia renal aguda, insuficiencia renal crónica en etapa terminal oligúrica e insuficiencia suprarrenal.
+
+#### block: 2
+En la insuficiencia suprarrenal, el déficit de mineralocorticoides impide una eliminación urinaria normal del potasio de la dieta.
+
+#### block: 3
+También pueden causar hiperkalemia los diuréticos ahorradores de potasio, como espironolactona, las drogas inhibidoras de la enzima convertidora de angiotensina y los antiinflamatorios no esteroidales, que inhiben la secreción de renina.
+
+#### block: 4
+Otra causa es el aumento de la carga de potasio, poco frecuente como causa de hiperkalemia mantenida. Puede deberse a aumento de destrucción de tejidos, cirugía mayor, politraumatismos, congelamiento, o aumento de ingesta, especialmente por administración oral o endovenosa de altas cantidades de potasio en pacientes con dificultad para excretarlo por el riñón.
+
+#### block: 5
+En condiciones normales, un ser humano puede adaptarse fácilmente a dietas con muy alto contenido de potasio sin presentar hiperkalemia.
+
+#### block: 6
+La acidosis puede causar hiperkalemia porque el potasio sale de la célula al LEC, desplazado por protones que entran a tamponarse a nivel celular. En este caso, la hiperkalemia significa cambio de compartimento sin incremento del potasio corporal total.
+
+#### block: 7
+La hiperkalemia ficticia se debe a error en la toma de muestra, como muestras hemolizadas o uso prolongado de torniquete, o a presencia de leucocitosis o trombocitosis en la muestra.
+
+#### block: 8
+Las manifestaciones clínicas de la hiperkalemia pueden incluir debilidad muscular, que afecta la musculatura general o respiratoria, y manifestaciones cardíacas, que son las más importantes.
+
+#### block: 9
+La hiperkalemia puede producir cambios electrocardiográficos característicos y es especialmente peligrosa cuando el potasio excede de 8 mEq/L, pudiendo provocar bradicardia, hipotensión, fibrilación ventricular y paro cardíaco.
+
+## theme: Tema 3 - Determinacion de electrolitos
+
+### section: Electrodo ion selectivo y potenciometria directa
+
+#### block: 1
+La determinación de electrolitos puede realizarse por análisis con electrodo ion selectivo, también llamado ISE, mediante potenciometría directa.
+
+#### block: 2
+Un método potenciométrico de análisis es la medida de un potencial con el fin de conocer la actividad, o concentración, de una sustancia en disolución.
+
+#### block: 3
+Un electrodo ion selectivo es un sensor que convierte la actividad de un ion específico disuelto en una solución en un potencial eléctrico que puede ser medido por un voltímetro.
+
+#### block: 4
+Los electrodos de ion selectivo producen una señal de voltaje como respuesta a un ion disuelto en una solución. El potencial producido depende de la concentración de la especie iónica presente en la solución.
+
+#### block: 5
+El sistema de medición potenciométrica está formado por un electrodo sensor y un electrodo de referencia.
+
+#### block: 6
+El electrodo sensor está hecho de un material que proporciona selectividad para un ion determinado. El voltaje producido depende del logaritmo de la actividad iónica, de acuerdo a la ecuación de Nernst.
+
+#### block: 7
+El voltaje medido puede ser expresado por la ecuación de Nernst de la siguiente manera:
+
+Eobs = Eo + 2.3 RT / nF x log (A)
+
+#### block: 8
+En la ecuación de Nernst:
+- Eobs es el potencial observado, medido en mV.
+- Eo es el potencial de referencia.
+- R es la constante de los gases.
+- T es la temperatura absoluta, en K.
+- F es la constante de Faraday.
+- N es el factor de valencia.
+- A es la actividad del ion específico.
