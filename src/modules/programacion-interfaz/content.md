@@ -9,437 +9,1262 @@ source_files:
   - componentes-react.md
 ---
 
-# unit: Unidad 1 - Componentes de interfaz para apps React
+# unit: Unit 1 - Interface Components
 
-## theme: Tema 1 - Estructura general de la app
+## theme: Theme 1 - App Structure
 
-### section: Idea central
+### section: PageShell
 
 #### block: 1
-La estructura general de una app define las zonas principales de la pantalla y la relacion entre ellas. Antes de pensar en botones o colores, conviene saber donde vive el contenido principal, donde aparece la navegacion y donde se muestran los controles.
+**Definition**
+
+`PageShell` es la estructura exterior que sostiene las zonas principales de una pantalla.
 
 #### block: 2
-En React, esta estructura suele representarse con componentes como `App`, `PageShell`, `AppLayout`, `MainView`, `Header`, `Footer`, `Sidebar`, `ContentArea`, `ReadingArea` y `SettingsArea`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Sirve para que la app tenga una forma estable. Define donde vive la navegacion, donde aparece el contenido principal y donde pueden existir paneles secundarios.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------------------------+
+| PageShell                                      |
+|  +----------+-------------------------------+  |
+|  | Sidebar  | ContentArea                   |  |
+|  |          |                               |  |
+|  +----------+-------------------------------+  |
++------------------------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+En la app de lectura lenta, `PageShell` evita que cada pantalla invente su propia estructura. Biblioteca, lector y ajustes pueden sentirse parte del mismo sistema.
+
+### section: Header
 
 #### block: 1
-En una webapp de lectura lenta, la estructura base puede separar una zona de lectura, una zona de controles y una zona de configuracion. Esa separacion evita que el lector mezcle el contenido que estudia con las acciones que usa para avanzar.
+**Definition**
+
+`Header` es la franja superior que presenta identidad, titulo o acciones generales de una pantalla.
 
 #### block: 2
-Un componente como `PageShell` puede envolver toda la pantalla. Dentro de el, `ReadingArea` muestra el texto, `ReadingToolbar` maneja acciones frecuentes y `SettingsArea` contiene preferencias como velocidad, tamano de fuente y modo de enfoque.
+**What It Does**
 
-### section: Componentes sugeridos
+Ayuda a orientar al usuario. Puede mostrar el nombre de la vista actual, una accion global o un acceso rapido para volver.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------------------------+
+| Header: Lectura Lenta              [Settings] |
++------------------------------------------------+
+| ContentArea                                    |
++------------------------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+En lectura lenta, `Header` debe ser discreto. Su funcion es orientar, no competir con el texto que el usuario esta leyendo.
+
+### section: Sidebar
 
 #### block: 1
-- `App`
-- `PageShell`
-- `AppLayout`
-- `MainView`
-- `Header`
-- `Footer`
-- `Sidebar`
-- `ContentArea`
-- `ReadingArea`
-- `SettingsArea`
+**Definition**
 
-## theme: Tema 2 - Layouts y contenedores
-
-### section: Idea central
-
-#### block: 1
-Un layout describe como se organiza el espacio. Un contenedor es una caja dentro de esa organizacion, pero el layout completo incluye filas, columnas, grillas, capas, areas con scroll y reglas responsivas.
+`Sidebar` es una zona lateral que agrupa navegacion, filtros o accesos a contenido relacionado.
 
 #### block: 2
-En React, el layout se implementa combinando componentes y CSS. Nombres como `Box`, `Row`, `Column`, `Stack`, `Grid`, `ResponsiveGrid`, `ScrollArea`, `Panel`, `Surface` y `Section` ayudan a leer la intencion de cada pieza.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Permite cambiar de area sin abandonar la pantalla completa. Funciona bien en escritorio porque aprovecha el ancho horizontal.
+
+#### block: 3
+**ASCII Image**
+
+```text
++--------------+---------------------------------+
+| Sidebar      | Reader                          |
+| - Library    |                                 |
+| - Progress   |                                 |
+| - Settings   |                                 |
++--------------+---------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Sidebar` puede mostrar biblioteca, unidades o temas. En movil deberia ocultarse o convertirse en un panel temporal para proteger el espacio de lectura.
+
+### section: ContentArea
 
 #### block: 1
-La zona de lectura necesita un layout estable. El texto no deberia saltar de posicion cuando cambian los controles, aparece una barra lateral o se modifica una preferencia visual.
+**Definition**
+
+`ContentArea` es la zona donde vive el contenido principal de la pantalla.
 
 #### block: 2
-Un `ReadingLayout` puede limitar el ancho del texto, centrar el contenido y reservar espacio para controles. Un `ScrollArea` puede permitir lectura continua sin convertir toda la pagina en una estructura dificil de controlar.
+**What It Does**
 
-### section: Componentes sugeridos
+Separa lo importante de lo secundario. En una pantalla, casi todo deberia organizarse alrededor de esta zona.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------------------------+
+| Header                                         |
++------------------------------------------------+
+|                                                |
+|                  ContentArea                   |
+|                                                |
++------------------------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+En el lector, `ContentArea` contiene el texto activo. En la biblioteca, contiene tarjetas o listas de modulos.
+
+### section: SettingsArea
 
 #### block: 1
-- `Container` o `Box`
-- `Row`
-- `Column`
-- `Stack`
-- `Grid`
-- `ResponsiveGrid`
-- `ScrollArea`
-- `Panel`
-- `Surface`
-- `Section`
+**Definition**
 
-## theme: Tema 3 - Texto y contenido de lectura
-
-### section: Idea central
-
-#### block: 1
-Los componentes de texto son el centro de una app de lectura lenta. No solo muestran palabras; tambien definen ritmo, jerarquia, enfasis, seleccion, legibilidad y comodidad visual.
+`SettingsArea` es una zona dedicada a preferencias y controles de configuracion.
 
 #### block: 2
-Una interfaz de lectura puede usar componentes como `Text`, `Paragraph`, `Heading`, `MarkdownViewer`, `ReaderText`, `HighlightedText`, `SelectableText`, `QuoteBlock` y `CodeBlock`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Permite ajustar la experiencia sin mezclar controles con contenido principal. Puede ser un panel fijo, lateral o modal.
+
+#### block: 3
+**ASCII Image**
+
+```text
++-------------------------------+----------------+
+| Reader                        | SettingsArea   |
+|                               | Font size      |
+|                               | Speed          |
+|                               | Theme          |
++-------------------------------+----------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SettingsArea` puede contener velocidad, tamano de texto, alto de linea, modo oscuro y modo de enfoque.
+
+## theme: Theme 2 - Layout Components
+
+### section: Box
 
 #### block: 1
-El texto debe tener un ancho controlado, una altura de linea comoda y un contraste suficiente. Si las lineas son demasiado largas, el lector pierde el punto de retorno; si son demasiado cortas, el ritmo se corta demasiado.
+**Definition**
+
+`Box` es una caja visual basica que envuelve contenido y le da espacio, fondo, borde o tamano.
 
 #### block: 2
-`ReaderText` puede encargarse de mostrar el bloque activo. `HighlightedText` puede resaltar una frase o palabra. `SelectableText` puede permitir copiar fragmentos sin afectar el flujo general de lectura.
+**What It Does**
 
-### section: Componentes sugeridos
+Sirve para crear una unidad visual. No decide toda la pantalla; solo delimita una pieza dentro del layout.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Box                  |
+|  contenido interno   |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Box` puede envolver un bloque de lectura, una tarjeta de modulo o una preferencia individual.
+
+### section: Row
 
 #### block: 1
-- `Text`
-- `Paragraph`
-- `Heading`
-- `MarkdownViewer`
-- `ReaderText`
-- `HighlightedText`
-- `SelectableText`
-- `QuoteBlock`
-- `CodeBlock`
+**Definition**
 
-## theme: Tema 4 - Navegacion
-
-### section: Idea central
-
-#### block: 1
-La navegacion permite moverse entre pantallas, secciones y estados de la app. En una interfaz bien organizada, el usuario sabe donde esta, que puede abrir y como volver.
+`Row` organiza elementos en direccion horizontal.
 
 #### block: 2
-En React, la navegacion puede tomar forma de `Navbar`, `SidebarNav`, `BottomNav`, `Tabs`, `Breadcrumbs`, `Drawer`, `RouteView`, `BackButton` y `NavigationItem`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Es util cuando varios controles pertenecen a la misma linea de accion, como botones de navegacion o indicadores compactos.
+
+#### block: 3
+**ASCII Image**
+
+```text
++-----------------------------------+
+| [Back]   [Pause]   [Next]         |
++-----------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Row` puede ordenar los controles de lectura: retroceder, pausar, avanzar y cambiar tamano de texto.
+
+### section: Column
 
 #### block: 1
-La app puede tener rutas o vistas para lectura, biblioteca, ajustes, estadisticas e historial. Cada una responde a una necesidad distinta del estudio.
+**Definition**
+
+`Column` organiza elementos en direccion vertical.
 
 #### block: 2
-En escritorio, una `SidebarNav` puede ser clara y persistente. En movil, una `BottomNav` o un `Drawer` puede ocupar menos espacio y mantener la zona de lectura limpia.
+**What It Does**
 
-### section: Componentes sugeridos
+Permite construir una secuencia clara de contenido. Es la estructura natural para listas, formularios y bloques de lectura.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Title                |
+| Paragraph            |
+| Button               |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Column` puede apilar titulo, progreso, bloque actual y acciones secundarias.
+
+### section: Grid
 
 #### block: 1
-- `Navbar`
-- `SidebarNav`
-- `BottomNav`
-- `Tabs`
-- `Breadcrumbs`
-- `Drawer`
-- `RouteView`
-- `BackButton`
-- `NavigationItem`
+**Definition**
 
-## theme: Tema 5 - Botones y acciones
-
-### section: Idea central
-
-#### block: 1
-Los botones representan acciones. Un buen boton no solo se ve clickeable; tambien comunica importancia, estado y consecuencia.
+`Grid` organiza elementos en filas y columnas.
 
 #### block: 2
-En React, conviene distinguir entre `Button`, `IconButton`, `PrimaryButton`, `SecondaryButton`, `TextButton`, `FloatingActionButton`, `ToolbarButton` y `ActionGroup`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Sirve para mostrar varias piezas equivalentes y comparables, como tarjetas de modulos o unidades.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------+----------+----------+
+| Card     | Card     | Card     |
++----------+----------+----------+
+| Card     | Card     | Card     |
++----------+----------+----------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Grid` funciona bien en la biblioteca, donde el usuario necesita escanear varias opciones antes de abrir una lectura.
+
+### section: Stack
 
 #### block: 1
-Las acciones frecuentes son iniciar, pausar, avanzar, retroceder, reiniciar, guardar progreso, importar texto y abrir ajustes. No todas deben tener el mismo peso visual.
+**Definition**
+
+`Stack` coloca elementos en capas, uno sobre otro.
 
 #### block: 2
-`PlaybackControls` puede agrupar acciones de lectura. Un `PrimaryButton` puede iniciar la sesion. `IconButton` sirve para acciones compactas como pausar, cerrar, aumentar fuente o activar enfoque.
+**What It Does**
 
-### section: Componentes sugeridos
+Permite crear overlays, badges, fondos, controles flotantes o estados superpuestos.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Base content         |
+|        +----------+  |
+|        | Overlay  |  |
+|        +----------+  |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Stack` puede servir para mostrar un indicador de progreso sobre el panel de lectura o una capa de enfoque.
+
+### section: ScrollArea
 
 #### block: 1
-- `Button`
-- `IconButton`
-- `PrimaryButton`
-- `SecondaryButton`
-- `TextButton`
-- `FloatingActionButton`
-- `ToolbarButton`
-- `ActionGroup`
+**Definition**
 
-## theme: Tema 6 - Formularios y entradas
-
-### section: Idea central
-
-#### block: 1
-Los formularios y entradas permiten que el usuario entregue informacion o modifique parametros. En una app de estudio, muchas entradas son ajustes que cambian la experiencia de lectura.
+`ScrollArea` es una zona donde el contenido puede desplazarse sin mover toda la pantalla.
 
 #### block: 2
-Componentes comunes son `Input`, `TextArea`, `SearchInput`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `Slider`, `NumberInput` y `FileInput`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Controla el overflow. Ayuda a mantener fija la estructura mientras el contenido interno crece.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| ScrollArea        |  |
+| line 1            |  |
+| line 2            |  |
+| line 3            v  |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ScrollArea` es clave en el lector. Permite avanzar por bloques largos sin perder la barra de acciones.
+
+## theme: Theme 3 - Reading Text Components
+
+### section: Heading
 
 #### block: 1
-`TextArea` permite pegar texto para leer. `FileInput` permite importar archivos. `Slider` puede controlar velocidad, tamano de fuente o altura de linea. `Switch` puede activar modo oscuro, foco visual o lectura automatica.
+**Definition**
+
+`Heading` es un titulo que marca jerarquia dentro de la pantalla.
 
 #### block: 2
-Cada entrada debe tener etiqueta clara, valor visible y respuesta inmediata. Si el usuario ajusta la velocidad de lectura, la interfaz deberia mostrar el valor actual y aplicar el cambio sin obligarlo a adivinar.
+**What It Does**
 
-### section: Componentes sugeridos
+Indica donde esta el usuario. Puede representar una unidad, tema, seccion o titulo de bloque.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Unidad 2 - Creational Patterns
+==============================
+Texto de lectura debajo...
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Heading` debe ser claro, pero no enorme. El foco principal sigue siendo el texto que se esta leyendo.
+
+### section: Paragraph
 
 #### block: 1
-- `Input`
-- `TextArea`
-- `SearchInput`
-- `Select`
-- `Checkbox`
-- `RadioGroup`
-- `Switch`
-- `Slider`
-- `NumberInput`
-- `FileInput`
+**Definition**
 
-## theme: Tema 7 - Listas, colecciones y biblioteca
-
-### section: Idea central
-
-#### block: 1
-Las listas y colecciones muestran grupos de elementos relacionados. En una app de lectura, sirven para presentar textos, unidades, temas, sesiones, favoritos e historial.
+`Paragraph` es un bloque de texto continuo con sentido propio.
 
 #### block: 2
-Componentes utiles son `List`, `ListItem`, `ReadingList`, `BookList`, `ChapterList`, `CardGrid`, `LibraryGrid`, `EmptyState` y `ReorderableList`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Entrega informacion legible. Necesita buen ancho, altura de linea y contraste para no cansar.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------------------+
+| Este parrafo explica una idea    |
+| completa sin romper el ritmo.    |
++----------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Paragraph` es la unidad visual que sostiene la explicacion. Debe sentirse calmado y respirable.
+
+### section: ReaderText
 
 #### block: 1
-Una biblioteca necesita mostrar que textos existen, cual fue el ultimo abierto y cuanto progreso tiene cada uno. Un `ReadingList` puede ordenar sesiones recientes y un `LibraryGrid` puede mostrar modulos o colecciones.
+**Definition**
+
+`ReaderText` es el componente especializado que muestra el texto activo de lectura.
 
 #### block: 2
-Cuando no hay textos cargados, un `EmptyState` evita una pantalla vacia. Ese estado puede ofrecer una accion directa como importar texto o abrir una coleccion de ejemplo.
+**What It Does**
 
-### section: Componentes sugeridos
+Controla como se ve el bloque actual: tamano, espaciado, ancho maximo, alineacion y ritmo visual.
+
+#### block: 3
+**ASCII Image**
+
+```text
++--------------------------------------+
+|                                      |
+|      "Texto actual de lectura"       |
+|                                      |
++--------------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ReaderText` es una pieza central. Si falla, la app puede tener buenas funciones, pero se sentira incomoda para estudiar.
+
+### section: MarkdownViewer
 
 #### block: 1
-- `List`
-- `ListItem`
-- `ReadingList`
-- `BookList`
-- `ChapterList`
-- `CardGrid`
-- `LibraryGrid`
-- `EmptyState`
-- `ReorderableList`
+**Definition**
 
-## theme: Tema 8 - Tablas, datos y estadisticas
-
-### section: Idea central
-
-#### block: 1
-Las tablas y metricas muestran informacion estructurada. No todas las apps necesitan tablas al inicio, pero casi toda app con progreso termina necesitando datos resumidos.
+`MarkdownViewer` muestra contenido escrito en Markdown como texto formateado.
 
 #### block: 2
-Componentes utiles son `DataTable`, `StatsCard`, `Metric`, `ProgressSummary`, `ReadingHistory`, `SessionLog`, `Chart` y `ProgressChart`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Convierte encabezados, listas, negritas, codigo y enlaces en una vista legible.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Markdown source        Rendered view
+---------------        -------------
+**Concept**       ->   Concept en negrita
+- item            ->   lista visible
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`MarkdownViewer` permite que los contenidos de estudio tengan estructura sin escribir componentes manuales para cada bloque.
+
+### section: HighlightedText
 
 #### block: 1
-La app puede mostrar palabras leidas, sesiones completadas, tiempo acumulado, progreso por unidad y velocidad promedio. Estos datos ayudan a convertir la lectura en una practica medible.
+**Definition**
+
+`HighlightedText` es texto con una parte resaltada para dirigir la atencion.
 
 #### block: 2
-`StatsCard` puede mostrar una metrica simple. `ReadingHistory` puede listar sesiones. `ProgressChart` puede mostrar avance por dia o por modulo.
+**What It Does**
 
-### section: Componentes sugeridos
+Hace visible una palabra, frase o idea importante dentro de un bloque mayor.
+
+#### block: 3
+**ASCII Image**
+
+```text
+El patron reduce [acoplamiento] entre piezas.
+                  ^^^^^^^^^^^^
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`HighlightedText` puede marcar el concepto actual, una palabra clave o el fragmento que se esta leyendo.
+
+### section: SelectableText
 
 #### block: 1
-- `DataTable`
-- `StatsCard`
-- `Metric`
-- `ProgressSummary`
-- `ReadingHistory`
-- `SessionLog`
-- `Chart`
-- `ProgressChart`
+**Definition**
 
-## theme: Tema 9 - Feedback y estados del sistema
-
-### section: Idea central
-
-#### block: 1
-El feedback informa que esta pasando. Sin feedback, el usuario no sabe si la app guardo, cargo, fallo, esta esperando o termino una accion.
+`SelectableText` permite seleccionar y copiar texto.
 
 #### block: 2
-Componentes comunes son `Toast`, `Snackbar`, `Alert`, `Banner`, `ProgressBar`, `Spinner`, `LoadingState`, `ErrorState` y `SuccessState`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Da control al usuario cuando necesita guardar una cita, copiar una definicion o revisar una frase.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Seleccion:
+|-----------------------|
+| texto copiable        |
+|-----------------------|
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SelectableText` debe convivir con los gestos de avance. Si cada toque avanza la lectura, seleccionar texto puede volverse dificil.
+
+## theme: Theme 4 - Navigation Components
+
+### section: SidebarNav
 
 #### block: 1
-La app puede mostrar un `ProgressBar` para indicar avance del texto, un `Spinner` mientras carga contenido, un `Toast` al guardar progreso y un `ErrorState` si un archivo no se pudo leer.
+**Definition**
+
+`SidebarNav` es una navegacion lateral con enlaces o botones principales.
 
 #### block: 2
-Los estados tambien deben cubrir pantallas completas. Una vista de carga, una vista vacia y una vista de error hacen que la interfaz sea predecible incluso cuando falta informacion.
+**What It Does**
 
-### section: Componentes sugeridos
+Permite cambiar de vista sin ocupar la zona central. Es buena para apps de estudio con varias areas.
+
+#### block: 3
+**ASCII Image**
+
+```text
++-------------+----------------------+
+| Library     | Content              |
+| Reader      |                      |
+| Settings    |                      |
++-------------+----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SidebarNav` puede llevar a biblioteca, progreso, descargas y ajustes.
+
+### section: Tabs
 
 #### block: 1
-- `Toast`
-- `Snackbar`
-- `Alert`
-- `Banner`
-- `ProgressBar`
-- `Spinner`
-- `LoadingState`
-- `ErrorState`
-- `SuccessState`
+**Definition**
 
-## theme: Tema 10 - Overlays, modales y capas
-
-### section: Idea central
-
-#### block: 1
-Los overlays aparecen sobre la interfaz principal. Sirven para decisiones, paneles temporales, ayuda contextual o acciones que no justifican cambiar de pantalla completa.
+`Tabs` separa vistas relacionadas dentro del mismo contexto.
 
 #### block: 2
-Componentes utiles son `Modal`, `Dialog`, `ConfirmDialog`, `DrawerPanel`, `BottomSheet`, `Popover`, `Tooltip`, `ContextMenu` y `Overlay`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Permite cambiar entre grupos de informacion sin navegar a otra pantalla completa.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------+----------+----------+
+| Texto    | Preguntas| Galeria  |
++----------+----------+----------+
+| contenido actual                 |
++----------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Tabs` puede separar lectura, preguntas relevantes y resumen visual de una misma unidad.
+
+### section: BackButton
 
 #### block: 1
-Un `Dialog` puede confirmar que se reiniciara el progreso. Un `Popover` puede mostrar informacion sobre una palabra. Un `Tooltip` puede explicar iconos compactos de la barra de lectura.
+**Definition**
+
+`BackButton` devuelve al usuario al nivel anterior.
 
 #### block: 2
-Los overlays deben interrumpir lo justo. Si todo se abre como modal, la lectura se vuelve pesada. Conviene reservar modales para decisiones importantes y usar paneles laterales para ajustes frecuentes.
+**What It Does**
 
-### section: Componentes sugeridos
+Hace que la navegacion sea reversible. Reduce miedo a explorar porque siempre hay una salida clara.
+
+#### block: 3
+**ASCII Image**
+
+```text
+[Back]  Unidad 2 - Creational Patterns
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`BackButton` puede volver de lectura a temas, de temas a unidad o de unidad a area.
+
+### section: NavigationItem
 
 #### block: 1
-- `Modal`
-- `Dialog`
-- `ConfirmDialog`
-- `DrawerPanel`
-- `BottomSheet`
-- `Popover`
-- `Tooltip`
-- `ContextMenu`
-- `Overlay`
+**Definition**
 
-## theme: Tema 11 - Multimedia y recursos visuales
-
-### section: Idea central
-
-#### block: 1
-Los recursos visuales apoyan la comprension, la identidad y la orientacion. No siempre son protagonistas, pero ayudan a reconocer textos, acciones y estados.
+`NavigationItem` es una opcion individual dentro de una navegacion.
 
 #### block: 2
-Componentes comunes son `Image`, `Avatar`, `Icon`, `Video`, `CoverImage`, `Illustration`, `Logo` y `Animation`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Representa un destino. Debe mostrar nombre, estado activo y a veces descripcion o progreso.
+
+#### block: 3
+**ASCII Image**
+
+```text
+> Reader       activo
+  Library
+  Settings
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`NavigationItem` puede mostrar si un modulo esta online, descargado o parcialmente leido.
+
+## theme: Theme 5 - Action Components
+
+### section: Button
 
 #### block: 1
-Una app de lectura lenta puede usar portadas para modulos, iconos para acciones, ilustraciones para estados vacios y pequenas animaciones para transiciones suaves.
+**Definition**
+
+`Button` es un control que ejecuta una accion.
 
 #### block: 2
-Los recursos visuales no deben competir con el texto. En la pantalla de lectura, la imagen debe tener un rol claro o permanecer fuera del foco principal.
+**What It Does**
 
-### section: Componentes sugeridos
+Comunica que algo pasara al presionarlo. Su texto debe nombrar la accion, no describir la pantalla.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------+
+| Start Reading  |
++----------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Button` sirve para iniciar lectura, abrir unidad, guardar progreso o confirmar una accion.
+
+### section: IconButton
 
 #### block: 1
-- `Image`
-- `Avatar`
-- `Icon`
-- `Video`
-- `CoverImage`
-- `Illustration`
-- `Logo`
-- `Animation`
+**Definition**
 
-## theme: Tema 12 - Interaccion avanzada
-
-### section: Idea central
-
-#### block: 1
-La interaccion avanzada permite que la app responda a teclado, gestos, arrastre, foco y seleccion. Estos detalles convierten una interfaz correcta en una interfaz comoda.
+`IconButton` es un boton compacto representado por un icono.
 
 #### block: 2
-Componentes o capas utiles son `KeyboardShortcut`, `GestureArea`, `DragAndDrop`, `ResizablePanel`, `SelectableArea`, `HoverCard`, `FocusTrap` y `HotkeyLayer`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Ahorra espacio cuando la accion es frecuente o reconocible. Necesita tooltip o etiqueta accesible.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----+  +----+  +----+
+| <- |  | || |  | -> |
++----+  +----+  +----+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`IconButton` puede servir para avanzar, retroceder, pausar, abrir ajustes o cambiar tamano de texto.
+
+### section: ActionGroup
 
 #### block: 1
-Los atajos de teclado pueden iniciar, pausar, avanzar o retroceder sin mover la mano al mouse. Una `SelectableArea` permite copiar fragmentos. Un `ResizablePanel` permite ajustar biblioteca y lectura.
+**Definition**
+
+`ActionGroup` agrupa acciones relacionadas.
 
 #### block: 2
-`FocusTrap` es importante en modales para que el teclado no se pierda detras de la capa activa. `HotkeyLayer` puede centralizar los atajos y evitar conflictos entre lectura, busqueda y configuracion.
+**What It Does**
 
-### section: Componentes sugeridos
+Hace visible que varios botones pertenecen al mismo flujo de trabajo.
+
+#### block: 3
+**ASCII Image**
+
+```text
++-----------------------------+
+| [Back] [Pause] [Next]       |
++-----------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ActionGroup` puede agrupar los controles de reproduccion de lectura lenta.
+
+### section: FloatingActionButton
 
 #### block: 1
-- `KeyboardShortcut`
-- `GestureArea`
-- `DragAndDrop`
-- `ResizablePanel`
-- `SelectableArea`
-- `HoverCard`
-- `FocusTrap`
-- `HotkeyLayer`
+**Definition**
 
-## theme: Tema 13 - Tema, accesibilidad y responsividad
-
-### section: Idea central
-
-#### block: 1
-Tema, accesibilidad y responsividad definen si la app se puede usar en condiciones reales. Una interfaz no esta completa si solo funciona en una pantalla ideal y con una sola configuracion visual.
+`FloatingActionButton` es una accion principal flotante sobre la interfaz.
 
 #### block: 2
-Componentes y sistemas utiles son `ThemeProvider`, `ColorModeToggle`, `FontControls`, `DensityControls`, `ResponsiveShell`, `AccessibleButton`, `FocusRing` y `ScreenReaderLabel`.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Destaca una accion importante y disponible desde varios puntos de la pantalla.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Content              |
+|                  (+) |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+Podria usarse para importar texto, pero debe usarse con cuidado para no invadir la lectura.
+
+## theme: Theme 6 - Input Components
+
+### section: TextArea
 
 #### block: 1
-La app debe permitir ajustar tamano de fuente, contraste, modo claro u oscuro y densidad visual. Esos cambios no son adornos; afectan directamente la resistencia y concentracion durante la lectura.
+**Definition**
+
+`TextArea` es una entrada de texto largo.
 
 #### block: 2
-En pantallas grandes puede haber sidebar y lector al mismo tiempo. En pantallas pequenas, la navegacion debe ocupar menos espacio y la lectura debe conservar prioridad.
+**What It Does**
 
-### section: Componentes sugeridos
+Permite escribir o pegar contenido de varias lineas.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------+
+| Pega aqui tu texto...        |
+|                              |
+|                              |
++------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`TextArea` puede servir para importar un texto rapido y convertirlo en bloques de lectura.
+
+### section: SearchInput
 
 #### block: 1
-- `ThemeProvider`
-- `ColorModeToggle`
-- `FontControls`
-- `DensityControls`
-- `ResponsiveShell`
-- `AccessibleButton`
-- `FocusRing`
-- `ScreenReaderLabel`
+**Definition**
 
-## theme: Tema 14 - Componentes compuestos de la webapp
-
-### section: Idea central
-
-#### block: 1
-Los componentes compuestos combinan piezas genericas para resolver una necesidad especifica del producto. Aqui la interfaz deja de ser una coleccion de controles sueltos y empieza a tener lenguaje propio.
+`SearchInput` es una entrada especializada para buscar.
 
 #### block: 2
-En una app de lectura lenta, componentes como `SlowReader`, `ReadingToolbar`, `SpeedControl`, `TextImporter`, `ReaderViewport`, `FocusMode`, `ReadingSettingsPanel`, `LibraryPanel`, `SessionProgress` y `ReadingController` representan funciones completas.
+**What It Does**
 
-### section: Aplicacion en lectura lenta
+Filtra contenido segun una palabra o frase. Debe responder rapido y mostrar resultados claros.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------+
+| Search: patrones             |
++------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SearchInput` puede buscar modulos, temas, secciones o bloques guardados.
+
+### section: Select
 
 #### block: 1
-`SlowReader` puede ser el componente principal de la experiencia. Recibe texto, estado de lectura y configuracion. Luego coordina el viewport, los controles, el progreso y los ajustes.
+**Definition**
+
+`Select` permite escoger una opcion dentro de una lista cerrada.
 
 #### block: 2
-`ReadingController` puede contener la logica de avanzar, retroceder, pausar y reiniciar. `ReaderViewport` puede mostrar el bloque activo. `SpeedControl` y `FontControls` pueden modificar la experiencia sin mezclar UI con reglas de negocio.
+**What It Does**
 
-### section: Componentes sugeridos
+Evita que el usuario escriba valores incorrectos cuando las opciones ya estan definidas.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Theme: Dark      v   |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Select` puede escoger unidad, tema, voz, idioma o modo de lectura.
+
+### section: Switch
 
 #### block: 1
-- `SlowReader`
-- `ReadingToolbar`
-- `SpeedControl`
-- `TextImporter`
-- `ReaderViewport`
-- `FocusMode`
-- `ReadingSettingsPanel`
-- `LibraryPanel`
-- `SessionProgress`
-- `ReadingController`
+**Definition**
+
+`Switch` activa o desactiva una opcion binaria.
+
+#### block: 2
+**What It Does**
+
+Representa decisiones de encendido o apagado, como modo oscuro o enfoque.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Focus Mode   [ off | ON ]
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Switch` puede activar modo enfoque, lectura automatica o mostrar ayudas visuales.
+
+### section: Slider
+
+#### block: 1
+**Definition**
+
+`Slider` permite elegir un valor dentro de un rango.
+
+#### block: 2
+**What It Does**
+
+Es util cuando el valor se ajusta por sensacion, no solo por numero exacto.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Speed
+slow  ----o-------------  fast
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Slider` puede controlar velocidad, tamano de fuente, alto de linea o intensidad del foco.
+
+### section: FileInput
+
+#### block: 1
+**Definition**
+
+`FileInput` permite seleccionar un archivo del dispositivo.
+
+#### block: 2
+**What It Does**
+
+Conecta la app con archivos externos. Debe validar formato, tamano y errores de lectura.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Choose file...       |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`FileInput` puede importar textos, notas o documentos para transformarlos en sesiones de lectura.
+
+## theme: Theme 7 - Collection Components
+
+### section: ReadingList
+
+#### block: 1
+**Definition**
+
+`ReadingList` muestra lecturas disponibles o sesiones recientes.
+
+#### block: 2
+**What It Does**
+
+Organiza elementos de lectura para que el usuario pueda elegir que continuar.
+
+#### block: 3
+**ASCII Image**
+
+```text
++--------------------------------+
+| Fundamentos        40%         |
+| Patrones           12%         |
+| Interfaz            0%         |
++--------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ReadingList` puede mostrar ultimas lecturas, progreso y acceso rapido a continuar.
+
+### section: LibraryGrid
+
+#### block: 1
+**Definition**
+
+`LibraryGrid` muestra colecciones como tarjetas en una grilla.
+
+#### block: 2
+**What It Does**
+
+Ayuda a escanear varias opciones al mismo tiempo.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------+----------+
+| Module   | Module   |
++----------+----------+
+| Module   | Module   |
++----------+----------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`LibraryGrid` puede mostrar areas, modulos o unidades de estudio.
+
+### section: EmptyState
+
+#### block: 1
+**Definition**
+
+`EmptyState` es una vista para cuando no hay contenido que mostrar.
+
+#### block: 2
+**What It Does**
+
+Evita una pantalla vacia y explica que puede hacer el usuario.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------+
+| No readings yet              |
+| [Import text]                |
++------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`EmptyState` puede aparecer si no hay textos importados, descargas o resultados de busqueda.
+
+### section: ProgressBar
+
+#### block: 1
+**Definition**
+
+`ProgressBar` muestra avance dentro de una tarea o contenido.
+
+#### block: 2
+**What It Does**
+
+Convierte progreso invisible en una senal visual simple.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Progress
+[########------] 60%
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ProgressBar` puede mostrar avance por bloque, tema, unidad o modulo.
+
+## theme: Theme 8 - Feedback Components
+
+### section: Toast
+
+#### block: 1
+**Definition**
+
+`Toast` es un mensaje breve que aparece y desaparece automaticamente.
+
+#### block: 2
+**What It Does**
+
+Confirma acciones sin interrumpir el flujo principal.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Progreso guardado    |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Toast` puede confirmar guardado, descarga completada o importacion correcta.
+
+### section: Dialog
+
+#### block: 1
+**Definition**
+
+`Dialog` es una ventana sobre la interfaz principal que requiere atencion.
+
+#### block: 2
+**What It Does**
+
+Sirve para confirmar decisiones, mostrar informacion importante o resolver una accion puntual.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------+
+| Reset progress?              |
+| [Cancel]        [Confirm]    |
++------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Dialog` puede confirmar reinicio de progreso o eliminacion de una lectura.
+
+### section: Tooltip
+
+#### block: 1
+**Definition**
+
+`Tooltip` es una ayuda breve que aparece al enfocar o pasar sobre un control.
+
+#### block: 2
+**What It Does**
+
+Explica iconos o acciones compactas sin llenar la pantalla con texto permanente.
+
+#### block: 3
+**ASCII Image**
+
+```text
+[A+]  ->  "Increase text size"
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`Tooltip` es util para botones de icono como avanzar, pausar, fuente, enfoque o galeria.
+
+### section: LoadingState
+
+#### block: 1
+**Definition**
+
+`LoadingState` muestra que la app esta esperando datos o preparando una vista.
+
+#### block: 2
+**What It Does**
+
+Evita que el usuario interprete una pausa como error o pantalla rota.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Loading...           |
+|        o             |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`LoadingState` puede aparecer al cargar modulos, generar resumen visual o importar archivos.
+
+### section: ErrorState
+
+#### block: 1
+**Definition**
+
+`ErrorState` muestra que una accion fallo y ofrece una salida.
+
+#### block: 2
+**What It Does**
+
+Explica el problema con lenguaje accionable. Debe decir que paso y que se puede intentar.
+
+#### block: 3
+**ASCII Image**
+
+```text
++------------------------------+
+| Could not load reading       |
+| [Try again]                  |
++------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ErrorState` puede aparecer si falla una descarga, un archivo no se puede leer o una unidad no existe.
+
+## theme: Theme 9 - Slow Reading Components
+
+### section: SlowReader
+
+#### block: 1
+**Definition**
+
+`SlowReader` es el componente que coordina la experiencia completa de lectura lenta.
+
+#### block: 2
+**What It Does**
+
+Une texto, bloque actual, progreso, controles, configuracion y avance.
+
+#### block: 3
+**ASCII Image**
+
+```text
++--------------------------------------+
+| SlowReader                           |
+|  toolbar                             |
+|  viewport                            |
+|  progress                            |
++--------------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SlowReader` es el componente compuesto principal. No deberia hacer todo solo, sino coordinar piezas mas pequenas.
+
+### section: ReaderViewport
+
+#### block: 1
+**Definition**
+
+`ReaderViewport` es la zona visible donde aparece el bloque o frase actual.
+
+#### block: 2
+**What It Does**
+
+Controla foco visual, centrado, ancho maximo y posicion del texto dentro del lector.
+
+#### block: 3
+**ASCII Image**
+
+```text
++--------------------------------------+
+|                                      |
+|         current reading block        |
+|                                      |
++--------------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ReaderViewport` debe ser estable. Si se mueve demasiado, el usuario pierde ritmo y concentracion.
+
+### section: ReadingToolbar
+
+#### block: 1
+**Definition**
+
+`ReadingToolbar` agrupa controles usados durante la lectura.
+
+#### block: 2
+**What It Does**
+
+Reune acciones frecuentes en un lugar predecible.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------------------+
+| [Back] [Text -25%] [Sections]    |
++----------------------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ReadingToolbar` puede contener volver, cambiar tamano, saltar de seccion y abrir recursos visuales.
+
+### section: SpeedControl
+
+#### block: 1
+**Definition**
+
+`SpeedControl` ajusta la velocidad de avance o revelado.
+
+#### block: 2
+**What It Does**
+
+Permite adaptar el ritmo a la capacidad de lectura del momento.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Speed
+calm  -----o----------  fast
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SpeedControl` ayuda a que la app no imponga un ritmo unico. El usuario debe poder leer mas lento o mas rapido segun el contenido.
+
+### section: ReadingSettingsPanel
+
+#### block: 1
+**Definition**
+
+`ReadingSettingsPanel` agrupa ajustes especificos de lectura.
+
+#### block: 2
+**What It Does**
+
+Centraliza configuraciones que afectan la comodidad visual y el ritmo.
+
+#### block: 3
+**ASCII Image**
+
+```text
++----------------------+
+| Reading Settings     |
+| Font size            |
+| Line height          |
+| Focus mode           |
++----------------------+
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`ReadingSettingsPanel` puede controlar fuente, espaciado, velocidad, tema y modo de enfoque.
+
+### section: SessionProgress
+
+#### block: 1
+**Definition**
+
+`SessionProgress` muestra el avance de la sesion actual.
+
+#### block: 2
+**What It Does**
+
+Ubica al usuario dentro del recorrido. Responde preguntas como cuanto avance y cuanto falta.
+
+#### block: 3
+**ASCII Image**
+
+```text
+Block 12 of 80
+[###-------------] 15%
+```
+
+#### block: 4
+**In The Slow Reading App**
+
+`SessionProgress` puede mostrar bloque actual, porcentaje, seccion activa y progreso guardado.
