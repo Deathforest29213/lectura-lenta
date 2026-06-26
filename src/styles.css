@@ -116,6 +116,12 @@
   flex-direction: column;
 }
 
+.reader-screen {
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 104px);
+}
+
 .title-bar {
   position: relative;
   width: min(100%, 960px);
@@ -631,6 +637,11 @@
   line-height: 1.6125rem;
 }
 
+.reader-focus-spacer {
+  flex: 0 0 clamp(260px, 46vh, 520px);
+  pointer-events: none;
+}
+
 .reader-block {
   margin: 0;
   white-space: pre-line;
@@ -663,6 +674,28 @@
 .inline-strong {
   color: var(--renal-text);
   font-weight: 700;
+}
+
+.reader-code-block {
+  overflow-x: auto;
+  margin: 6px 0 0;
+  border: 1px solid rgba(var(--renal-border-rgb), 0.24);
+  border-radius: 14px;
+  background: rgba(30, 35, 42, 0.62);
+  color: rgba(var(--renal-text-rgb), 0.95);
+  font-family: "Cascadia Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.94em;
+  line-height: 1.5;
+  padding: 14px 16px;
+  white-space: pre;
+}
+
+.reader-code-block code {
+  font: inherit;
+}
+
+.reader-text.is-compact .reader-code-block {
+  font-size: 0.9em;
 }
 
 .typing-cursor {
@@ -1072,6 +1105,10 @@
     padding: 20px;
   }
 
+  .reader-screen {
+    height: calc(100vh - 72px);
+  }
+
   .dashboard-grid,
   .unit-grid {
     grid-template-columns: 1fr;
@@ -1127,6 +1164,10 @@
   .reader-text.is-compact {
     font-size: 0.6rem;
     line-height: 1.275rem;
+  }
+
+  .reader-focus-spacer {
+    flex-basis: clamp(220px, 42vh, 440px);
   }
 
   .all-themes-row {

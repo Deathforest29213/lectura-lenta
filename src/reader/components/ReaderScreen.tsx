@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from 'react'
-import { isDelimiterBlock, renderInlineMarkdown, stripInlineMarkdown } from '../lib/inlineMarkdown'
+import { isDelimiterBlock, renderReaderMarkdown, stripInlineMarkdown } from '../lib/inlineMarkdown'
 import type { ParsedReadingModule, SectionIllustrations } from '../types/modules'
 import type { ReaderBlock, Unit } from '../types/reading'
 import { SectionDropdown } from './SectionDropdown'
@@ -69,9 +69,11 @@ export function ReaderScreen({
   const lightboxPointerStart = useRef<LightboxPointerStart | null>(null)
   const ignoreNextLightboxClick = useRef(false)
   const panelScrollRef = useRef<HTMLDivElement | null>(null)
+  const activeBlockRef = useRef<HTMLDivElement | null>(null)
   const minSwipeDistance = 60
   const tapTolerance = 8
   const scrollTolerance = 10
+  const isTyping = typingSentence.length > 0
   const percent = totalBlocks ? Math.min(100, Math.round(((currentIndex + 1) / totalBlocks) * 100)) : 0
 
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
@@ -211,6 +213,29 @@ export function ReaderScreen({
     return true
   }
 
+  const alignActiveBlockToReadingFocus = useCallback(() => {
+    const panel = panelScrollRef.current
+    const activeBlock = activeBlockRef.current
+
+    if (!panel || !activeBlock) return
+
+    const panelRect = panel.getBoundingClientRect()
+    const activeRect = activeBlock.getBoundingClientRect()
+    const activeCenter = activeRect.top - panelRect.top + activeRect.height / 2
+    const viewportHeight = window.visualViewport?.height ?? window.innerHeight
+    const viewportCenterInPanel = viewportHeight / 2 - panelRect.top
+    const minFocus = panel.clientHeight * 0.28
+    const maxFocus = panel.clientHeight * 0.58
+    const targetFocus = Math.min(Math.max(viewportCenterInPanel, minFocus), maxFocus)
+    const nextScrollTop = panel.scrollTop + activeCenter - targetFocus
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    panel.scrollTo({
+      top: Math.max(0, nextScrollTop),
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }, [])
+
   useEffect(() => {
     if (!illustrationModalOpen) return
 
@@ -236,6 +261,40 @@ export function ReaderScreen({
     },
     [],
   )
+
+  useEffect(() => {
+    if (illustrationModalOpen || activeIllustration) return
+
+    const frameId = window.requestAnimationFrame(alignActiveBlockToReadingFocus)
+    return () => window.cancelAnimationFrame(frameId)
+  }, [
+    activeIllustration,
+    alignActiveBlockToReadingFocus,
+    compactText,
+    currentIndex,
+    illustrationModalOpen,
+    isTyping,
+    revealedSentences.length,
+  ])
+
+  useEffect(() => {
+    if (illustrationModalOpen || activeIllustration) return
+
+    let frameId: number | null = null
+    const realign = () => {
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
+      frameId = window.requestAnimationFrame(alignActiveBlockToReadingFocus)
+    }
+
+    window.addEventListener('resize', realign)
+    window.visualViewport?.addEventListener('resize', realign)
+
+    return () => {
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
+      window.removeEventListener('resize', realign)
+      window.visualViewport?.removeEventListener('resize', realign)
+    }
+  }, [activeIllustration, alignActiveBlockToReadingFocus, illustrationModalOpen])
 
   return (
     <div className="reader-screen">
@@ -288,30 +347,34 @@ export function ReaderScreen({
             <div className={readerTextClass}>
               {revealedSentences.map(({ block, sentence }, index) => {
                 const reviewStatus = getBlockStatus(block?.sourceBlockRefId)
+                const isActiveBlock = !isTyping && index === revealedSentences.length - 1
                 return (
-                <p
+                <div
                   className={`reader-block ${isDelimiterBlock(sentence) ? 'is-delimiter' : ''} ${
                     reviewStatus !== 'normal' ? `is-${reviewStatus}` : ''
                   }`}
                   key={`${index}-${sentence.slice(0, 20)}`}
+                  ref={isActiveBlock ? activeBlockRef : null}
                 >
-                  {renderInlineMarkdown(sentence)}
-                </p>
+                  {renderReaderMarkdown(sentence)}
+                </div>
                 )
               })}
 
               {typingSentence && (
-                <p
+                <div
                   className={`reader-block ${isDelimiterBlock(typingSentence) ? 'is-delimiter' : ''} ${
                     getBlockStatus(currentBlock?.sourceBlockRefId) !== 'normal'
                       ? `is-${getBlockStatus(currentBlock?.sourceBlockRefId)}`
                       : ''
                   }`}
+                  ref={activeBlockRef}
                 >
                   {stripInlineMarkdown(typingSentence)}
                   <span className="typing-cursor" />
-                </p>
+                </div>
               )}
+              <div className="reader-focus-spacer" aria-hidden="true" />
             </div>
           </div>
         </div>
