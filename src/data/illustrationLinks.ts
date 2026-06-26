@@ -1,6 +1,8 @@
 import type { IllustrationLink } from '../reader/types/modules'
+import { interfazIllustrationLinks } from './interfazIllustrationLinks'
 
 export const illustrationLinks: Record<string, IllustrationLink[]> = {
+  'programacion-interfaz': interfazIllustrationLinks,
   'bioquimica-hidrosalino': [
     {
       unitId: 'unidad-2-hidrosalino-ii',

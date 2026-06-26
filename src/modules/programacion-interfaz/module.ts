@@ -6,7 +6,7 @@ export const moduleDefinition: RawReadingModule = {
   areaId: 'programacion',
   title: 'Interfaz de Programacion',
   description: 'Componentes, layouts y patrones de interfaz para construir apps React.',
-  version: '1.0.0',
+  version: '1.2.2',
   markdown,
   assets: [],
   theme: 'renal',
