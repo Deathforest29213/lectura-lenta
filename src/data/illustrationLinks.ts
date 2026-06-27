@@ -1,4 +1,5 @@
 import type { IllustrationLink } from '../reader/types/modules'
+import { designPatternIllustrationLinks } from './designPatternIllustrationLinks'
 import { interfazIllustrationLinks } from './interfazIllustrationLinks'
 
 export const illustrationLinks: Record<string, IllustrationLink[]> = {
@@ -750,6 +751,7 @@ export const illustrationLinks: Record<string, IllustrationLink[]> = {
       images: ['/resumen-visual/programacion-patrones-diseno/Unidad 2 - Patrones creacionales/10.webp'],
       sourceParagraphs: ['Singleton puede convertirse en estado global.'],
     },
+    ...designPatternIllustrationLinks,
   ],
   'programacion-optimizacion': [
     {

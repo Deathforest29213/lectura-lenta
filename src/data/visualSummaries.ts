@@ -356,6 +356,13 @@ export const visualSummaries: Record<string, Record<string, string[]>> = {
       "/resumen-visual/programacion-patrones-diseno/Unidad 1 - Patrones de diseno/9.webp",
       "/resumen-visual/programacion-patrones-diseno/Unidad 1 - Patrones de diseno/10.webp"
     ],
+    "Unidad 2 - Creational Patterns": [
+      "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Creational Patterns/01-factory-method.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Creational Patterns/02-abstract-factory.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Creational Patterns/03-builder.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Creational Patterns/04-prototype.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Creational Patterns/05-singleton.webp"
+    ],
     "Unidad 2 - Patrones creacionales": [
       "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Patrones creacionales/1.webp",
       "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Patrones creacionales/2.webp",
@@ -367,6 +374,27 @@ export const visualSummaries: Record<string, Record<string, string[]>> = {
       "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Patrones creacionales/8.webp",
       "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Patrones creacionales/9.webp",
       "/resumen-visual/programacion-patrones-diseno/Unidad 2 - Patrones creacionales/10.webp"
+    ],
+    "Unidad 3 - Structural Patterns": [
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/01-adapter.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/02-bridge.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/03-facade.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/04-decorator.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/05-proxy.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/06-composite.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 3 - Structural Patterns/07-flyweight.webp"
+    ],
+    "Unidad 4 - Behavioral Patterns": [
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/01-strategy.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/02-state.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/03-template-method.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/04-observer.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/05-mediator.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/06-chain-of-responsibility.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/07-command.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/08-iterator.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/09-memento.webp",
+      "/resumen-visual/programacion-patrones-diseno/Unidad 4 - Behavioral Patterns/10-visitor.webp"
     ]
   }
 }

@@ -1,0 +1,96 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 11 5 L 0 10 z" fill="#d8c0a4"/>
+    </marker>
+    <marker id="inherit" markerWidth="18" markerHeight="18" refX="16" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 16 8 L 1 15 z" fill="#2e343d" stroke="#d8c0a4" stroke-width="2"/>
+    </marker>
+    <marker id="diamond" markerWidth="18" markerHeight="18" refX="2" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M 2 8 L 9 1 L 16 8 L 9 15 z" fill="#2e343d" stroke="#d8c0a4" stroke-width="2"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#10141a" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="#2e343d"/>
+  <rect x="38" y="38" width="1524" height="924" rx="34" fill="rgba(57, 64, 73, 0.68)" stroke="#6689a1" stroke-width="2"/>
+  <text x="80" y="104" font-family="Nunito, Arial, sans-serif" font-size="42" font-weight="900" fill="#fcdebe">Adapter</text>
+  <text x="80" y="144" font-family="Nunito, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="3" fill="#d8c0a4">Structural pattern · incompatible interface</text>
+  <g font-family="Nunito, Arial, sans-serif" filter="url(#shadow)">
+
+
+    <g>
+      <rect x="100" y="400" width="240" height="92" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="100" y="400" width="240" height="42" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="100" y1="442" x2="340" y2="442" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="220" y="424" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Client</text>
+
+
+        <text x="118" y="470" font-size="19" fill="#d8c0a4">+ request()</text>
+
+    </g>
+
+    <g>
+      <rect x="520" y="180" width="300" height="110" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="520" y="180" width="300" height="60" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="520" y1="240" x2="820" y2="240" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="670" y="204" text-anchor="middle" font-size="18" font-weight="700" fill="#fcdebe">&lt;&lt;interface&gt;&gt;</text>
+
+        <text x="670" y="226" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Target</text>
+
+
+        <text x="538" y="268" font-size="19" fill="#d8c0a4">+ request()</text>
+
+    </g>
+
+    <g>
+      <rect x="520" y="590" width="300" height="110" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="520" y="590" width="300" height="42" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="520" y1="632" x2="820" y2="632" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="670" y="614" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Adapter</text>
+
+
+        <text x="538" y="660" font-size="19" fill="#d8c0a4">- adaptee</text>
+
+        <text x="538" y="684" font-size="19" fill="#d8c0a4">+ request()</text>
+
+    </g>
+
+    <g>
+      <rect x="1040" y="590" width="300" height="92" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="1040" y="590" width="300" height="42" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="1040" y1="632" x2="1340" y2="632" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="1190" y="614" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Adaptee</text>
+
+
+        <text x="1058" y="660" font-size="19" fill="#d8c0a4">+ specificRequest()</text>
+
+    </g>
+
+  </g>
+  <g font-family="Nunito, Arial, sans-serif">
+
+    <g>
+      <path d="M 340 440 L 520 260" fill="none" stroke="#d8c0a4" stroke-width="2.4" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+      <text x="430" y="342" text-anchor="middle" font-size="17" fill="#d8c0a4">expects</text>
+    </g>
+
+    <g>
+      <path d="M 670 590 L 670 302" fill="none" stroke="#d8c0a4" stroke-width="2.4" stroke-dasharray="9 7" marker-end="url(#inherit)"/>
+
+    </g>
+
+    <g>
+      <path d="M 820 655 L 1040 655" fill="none" stroke="#d8c0a4" stroke-width="2.4"  marker-end="url(#arrow)"/>
+      <text x="930" y="647" text-anchor="middle" font-size="17" fill="#d8c0a4">translates to</text>
+    </g>
+
+  </g>
+  <text x="80" y="928" font-family="Nunito, Arial, sans-serif" font-size="18" fill="#d8c0a4">UML estructural generado para Lectura Lenta</text>
+</svg>

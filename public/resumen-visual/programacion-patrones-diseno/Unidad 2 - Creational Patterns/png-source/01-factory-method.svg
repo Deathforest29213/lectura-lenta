@@ -1,0 +1,115 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 11 5 L 0 10 z" fill="#d8c0a4"/>
+    </marker>
+    <marker id="inherit" markerWidth="18" markerHeight="18" refX="16" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 16 8 L 1 15 z" fill="#2e343d" stroke="#d8c0a4" stroke-width="2"/>
+    </marker>
+    <marker id="diamond" markerWidth="18" markerHeight="18" refX="2" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M 2 8 L 9 1 L 16 8 L 9 15 z" fill="#2e343d" stroke="#d8c0a4" stroke-width="2"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#10141a" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="#2e343d"/>
+  <rect x="38" y="38" width="1524" height="924" rx="34" fill="rgba(57, 64, 73, 0.68)" stroke="#6689a1" stroke-width="2"/>
+  <text x="80" y="104" font-family="Nunito, Arial, sans-serif" font-size="42" font-weight="900" fill="#fcdebe">Factory Method</text>
+  <text x="80" y="144" font-family="Nunito, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="3" fill="#d8c0a4">Creational pattern · concrete product creation</text>
+  <g font-family="Nunito, Arial, sans-serif" filter="url(#shadow)">
+
+
+    <g>
+      <rect x="90" y="220" width="220" height="92" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="90" y="220" width="220" height="42" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="90" y1="262" x2="310" y2="262" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="200" y="244" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Client</text>
+
+
+        <text x="108" y="290" font-size="19" fill="#d8c0a4">+ use(product)</text>
+
+    </g>
+
+    <g>
+      <rect x="470" y="180" width="330" height="134" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="470" y="180" width="330" height="60" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="470" y1="240" x2="800" y2="240" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="635" y="204" text-anchor="middle" font-size="18" font-weight="700" fill="#fcdebe">&lt;&lt;abstract&gt;&gt;</text>
+
+        <text x="635" y="226" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Creator</text>
+
+
+        <text x="488" y="268" font-size="19" fill="#d8c0a4">+ operation()</text>
+
+        <text x="488" y="292" font-size="19" fill="#d8c0a4">+ factoryMethod(): Product</text>
+
+    </g>
+
+    <g>
+      <rect x="470" y="560" width="330" height="92" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="470" y="560" width="330" height="42" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="470" y1="602" x2="800" y2="602" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="635" y="584" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">ConcreteCreator</text>
+
+
+        <text x="488" y="630" font-size="19" fill="#d8c0a4">+ factoryMethod(): Product</text>
+
+    </g>
+
+    <g>
+      <rect x="1050" y="190" width="300" height="110" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="1050" y="190" width="300" height="60" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="1050" y1="250" x2="1350" y2="250" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="1200" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#fcdebe">&lt;&lt;interface&gt;&gt;</text>
+
+        <text x="1200" y="236" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">Product</text>
+
+
+        <text x="1068" y="278" font-size="19" fill="#d8c0a4">+ execute()</text>
+
+    </g>
+
+    <g>
+      <rect x="1050" y="560" width="300" height="92" rx="10" fill="#3e4a56" stroke="#6689a1" stroke-width="2"/>
+      <rect x="1050" y="560" width="300" height="42" rx="10" fill="#465767" stroke="#6689a1" stroke-width="2"/>
+      <line x1="1050" y1="602" x2="1350" y2="602" stroke="#6689a1" stroke-width="2"/>
+
+        <text x="1200" y="584" text-anchor="middle" font-size="23" font-weight="900" fill="#fcdebe">ConcreteProduct</text>
+
+
+        <text x="1068" y="630" font-size="19" fill="#d8c0a4">+ execute()</text>
+
+    </g>
+
+  </g>
+  <g font-family="Nunito, Arial, sans-serif">
+
+    <g>
+      <path d="M 310 270 L 470 250" fill="none" stroke="#d8c0a4" stroke-width="2.4" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+      <text x="390" y="252" text-anchor="middle" font-size="17" fill="#d8c0a4">uses</text>
+    </g>
+
+    <g>
+      <path d="M 635 560 L 635 332" fill="none" stroke="#d8c0a4" stroke-width="2.4"  marker-end="url(#inherit)"/>
+
+    </g>
+
+    <g>
+      <path d="M 800 248 L 1050 248" fill="none" stroke="#d8c0a4" stroke-width="2.4" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+      <text x="925" y="240" text-anchor="middle" font-size="17" fill="#d8c0a4">creates</text>
+    </g>
+
+    <g>
+      <path d="M 1200 560 L 1200 312" fill="none" stroke="#d8c0a4" stroke-width="2.4" stroke-dasharray="9 7" marker-end="url(#inherit)"/>
+
+    </g>
+
+  </g>
+  <text x="80" y="928" font-family="Nunito, Arial, sans-serif" font-size="18" fill="#d8c0a4">UML estructural generado para Lectura Lenta</text>
+</svg>
