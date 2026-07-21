@@ -3,6 +3,7 @@ import { moduleDefinition as funcionRenal } from '../modules/bioquimica-funcion-
 import { moduleDefinition as hidrosalino } from '../modules/bioquimica-hidrosalino/module'
 import { moduleDefinition as rompeBarreraNo } from '../modules/libros-rompe-barrera-no/module'
 import { moduleDefinition as arquitectura } from '../modules/programacion-arquitectura/module'
+import { moduleDefinition as backendFastapi } from '../modules/programacion-backend-fastapi/module'
 import { moduleDefinition as fundamentos } from '../modules/programacion-fundamentos/module'
 import { moduleDefinition as interfaz } from '../modules/programacion-interfaz/module'
 import { moduleDefinition as optimizacion } from '../modules/programacion-optimizacion/module'
@@ -19,6 +20,7 @@ const rawModules: RawReadingModule[] = [
   acidoBase,
   fundamentos,
   arquitectura,
+  backendFastapi,
   interfaz,
   optimizacion,
   patronesDiseno,

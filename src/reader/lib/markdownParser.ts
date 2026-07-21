@@ -100,6 +100,7 @@ export const parseMarkdownLibrary = (
   const library: Unit[] = []
   const unitIds = new Set<string>()
   const themeIds = new Set<string>()
+  let plainMarkdownMode = false
   let currentUnit: Unit | null = null
   let currentTheme: Theme | null = null
   let currentSection: Section | null = null
@@ -145,7 +146,50 @@ export const parseMarkdownLibrary = (
     .split('\n')
     .forEach((line) => {
       const trimmed = line.trim()
-      if (!trimmed) return
+      if (!trimmed) {
+        if (plainMarkdownMode) commitBlock()
+        return
+      }
+
+      if (/^#\s+Unidad\b/i.test(trimmed)) {
+        plainMarkdownMode = true
+        commitUnit()
+        const title = trimmed.replace(/^#\s+/i, '').trim()
+        currentUnit = {
+          id: uniqueId(unitIdFromTitle(title, library.length), unitIds, `unit-${library.length + 1}`),
+          title,
+          enabled: true,
+          themes: [],
+        }
+        return
+      }
+
+      if (plainMarkdownMode && /^##\s+Tema\b/i.test(trimmed)) {
+        commitTheme()
+        const title = trimmed.replace(/^##\s+/i, '').trim()
+        const id = uniqueId(slugify(title), themeIds, `theme-${themeIds.size + 1}`)
+        currentTheme = {
+          id,
+          title,
+          shortTitle: title,
+          description: '',
+          enabled: true,
+          version: topicVersions[id] ?? defaultVersion,
+          sections: [],
+        }
+        return
+      }
+
+      if (plainMarkdownMode && /^###\s+Secci[oó]n\b/i.test(trimmed)) {
+        commitSection()
+        const title = trimmed.replace(/^###\s+/i, '').trim()
+        currentSection = {
+          id: slugify(title) || `section-${currentTheme?.sections.length ?? 0}`,
+          title,
+          blocks: [],
+        }
+        return
+      }
 
       if (/^# unit:/i.test(trimmed)) {
         commitUnit()
@@ -201,6 +245,18 @@ export const parseMarkdownLibrary = (
 
       if (currentBlock) {
         currentBlock.lines.push(line.trimEnd())
+        return
+      }
+
+      if (plainMarkdownMode && currentSection) {
+        const sectionId = currentSection.id
+        const order = currentSection.blocks.length + 1
+        currentBlock = {
+          id: `${sectionId}-${currentSection.blocks.length}`,
+          refId: blockRefId(moduleId, currentUnit?.id ?? null, currentTheme?.id ?? null, sectionId, order),
+          order,
+          lines: [line.trimEnd()],
+        }
       }
     })
 
