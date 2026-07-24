@@ -8,6 +8,7 @@ import { moduleDefinition as fundamentos } from '../modules/programacion-fundame
 import { moduleDefinition as interfaz } from '../modules/programacion-interfaz/module'
 import { moduleDefinition as optimizacion } from '../modules/programacion-optimizacion/module'
 import { moduleDefinition as patronesDiseno } from '../modules/programacion-patrones-diseno/module'
+import { moduleDefinition as qaTesting } from '../modules/programacion-qa-testing/module'
 import { parseMarkdownLibrary } from '../reader/lib/markdownParser'
 import { parseRelevantQuestionMap } from '../reader/lib/questionMapParser'
 import type { IllustrationLink, ParsedReadingModule, RawReadingModule } from '../reader/types/modules'
@@ -21,6 +22,7 @@ const rawModules: RawReadingModule[] = [
   fundamentos,
   arquitectura,
   backendFastapi,
+  qaTesting,
   interfaz,
   optimizacion,
   patronesDiseno,
